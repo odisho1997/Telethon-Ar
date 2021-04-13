@@ -21,12 +21,15 @@ async def amireallyalive(alive):
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
+        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات :** `{check_sgnirts}`\n"
         cat_caption += f"**{EMOJI} نسخة تليثون :** `{version.__version__}\n`"
         cat_caption += f"**{EMOJI} نسخة العرب :** `{catversion}`\n"
         cat_caption += f"**{EMOJI} نسخة البايثون :** `{python_version()}\n`"
         cat_caption += f"**{EMOJI} الوقت :** `{uptime}\n`"
         cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
+        cat_caption += f"**{EMOJI}**  **[قناة السورس]**(t.me/iqthon)  𖠕 .\n"
+        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )

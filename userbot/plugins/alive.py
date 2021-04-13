@@ -5,10 +5,10 @@ from telethon import version
 
 from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, reply_id
 
-DEFAULTUSER = ALIVE_NAME or "cat"
+DEFAULTUSER = ALIVE_NAME or "Telethon-Arabs"
 CAT_IMG = Config.ALIVE_PIC
-CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "✮ MY BOT IS RUNNING SUCCESSFULLY ✮"
-EMOJI = Config.CUSTOM_ALIVE_EMOJI or "  ✥ "
+CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "𝑤𝑒𝑙𝑐𝑜𝑚𝑒 𝑡𝑜 𝑠𝑜𝑢𝑟𝑐𝑒 𝑡𝑒𝑙𝑒𝑡ℎ𝑜𝑛 𝑎𝑟𝑎𝑏𝑠⁦ ˖꒰"
+EMOJI = Config.CUSTOM_ALIVE_EMOJI or "  𖠕 "
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="alive$"))
@@ -21,12 +21,12 @@ async def amireallyalive(alive):
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-        cat_caption += f"**{EMOJI} Telethon version :** `{version.__version__}\n`"
-        cat_caption += f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-        cat_caption += f"**{EMOJI} Python Version :** `{python_version()}\n`"
-        cat_caption += f"**{EMOJI} Uptime :** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} Master:** {mention}\n"
+        cat_caption += f"**{EMOJI} قاعدة البيانات :** `{check_sgnirts}`\n"
+        cat_caption += f"**{EMOJI} نسخة تليثون :** `{version.__version__}\n`"
+        cat_caption += f"**{EMOJI} نسخة العرب :** `{catversion}`\n"
+        cat_caption += f"**{EMOJI} نسخة البايثون :** `{python_version()}\n`"
+        cat_caption += f"**{EMOJI} الوقت :** `{uptime}\n`"
+        cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )
@@ -35,16 +35,16 @@ async def amireallyalive(alive):
         await edit_or_reply(
             alive,
             f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-            f"**{EMOJI} Database :** `{check_sgnirts}`\n"
-            f"**{EMOJI} Telethon Version :** `{version.__version__}\n`"
-            f"**{EMOJI} Catuserbot Version :** `{catversion}`\n"
-            f"**{EMOJI} Python Version :** `{python_version()}\n`"
-            f"**{EMOJI} Uptime :** `{uptime}\n`"
-            f"**{EMOJI} Master:** {mention}\n",
+            f"**{EMOJI} قاعدة البيانات :** `{check_sgnirts}`\n"
+            f"**{EMOJI} نسخة تليثون :** `{version.__version__}\n`"
+            f"**{EMOJI} نسخة العرب :** `{catversion}`\n"
+            f"**{EMOJI} نسخة البايثون :** `{python_version()}\n`"
+            f"**{EMOJI} الوقت :** `{uptime}\n`"
+            f"**{EMOJI} المنشئ:** {mention}\n",
         )
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="ialive$"))
+@bot.on(admin_cmd(outgoing=True, pattern="idkbsalive$"))
 @bot.on(sudo_cmd(pattern="ialive$", allow_sudo=True))
 async def amireallyalive(alive):
     if alive.fwd_from:

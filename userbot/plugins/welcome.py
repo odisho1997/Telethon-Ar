@@ -100,13 +100,13 @@ async def save_welcome(event):
         else:
             await edit_or_reply(
                 event,
-                "`Saving media as part of the welcome note requires the BOTLOG_CHATID to be set.`",
+                "`↫ يتطلب حفظ الوسائط كجزء من ملاحظة الترحيب تعيين BOTLOG_CHATID ⪼`",
             )
             return
     elif event.reply_to_msg_id and not string:
         rep_msg = await event.get_reply_message()
         string = rep_msg.text
-    success = "`Welcome note {} for this chat.`"
+    success = "𖠕 تـم حفـض ترحـيبك بنـجاح ↫"
     if add_welcome_setting(event.chat_id, 0, string, msg_id) is True:
         return await edit_or_reply(event, success.format("saved"))
     rm_welcome_setting(event.chat_id)
@@ -121,9 +121,9 @@ async def del_welcome(event):
     if event.fwd_from:
         return
     if rm_welcome_setting(event.chat_id) is True:
-        await edit_or_reply(event, "`Welcome note deleted for this chat.`")
+        await edit_or_reply(event, "𖠕 تـم مـسح ترحـيبك بنـجاح ↫`")
     else:
-        await edit_or_reply(event, "`Do I have a welcome note here ?`")
+        await edit_or_reply(event, "𖠕  لايـوجد لديـك هـنا تـرحيب ↫")
 
 
 @bot.on(admin_cmd(pattern="listwelcome$"))
@@ -133,17 +133,17 @@ async def show_welcome(event):
         return
     cws = get_current_welcome_settings(event.chat_id)
     if not cws:
-        await edit_or_reply(event, "`No welcome message saved here.`")
+        await edit_or_reply(event, "`𖠕  لايـوجد لديـك هـنا تـرحيب ↫`")
         return
     if cws.f_mesg_id:
         msg_o = await bot.get_messages(entity=BOTLOG_CHATID, ids=int(cws.f_mesg_id))
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "`↫ أرحب حاليًا بالمستخدمين الجدد بهذه الملاحظة الترحيبية`"
         )
         await event.reply(msg_o.message, file=msg_o.media)
     elif cws.reply:
         await edit_or_reply(
-            event, "`I am currently welcoming new users with this welcome note.`"
+            event, "`↫ أرحب حاليًا بالمستخدمين الجدد بهذه الملاحظة الترحيبية.`"
         )
         await event.reply(cws.reply)
 

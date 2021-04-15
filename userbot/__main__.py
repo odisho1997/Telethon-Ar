@@ -27,15 +27,15 @@ else:
     bot.tgbot = None
     try:
         if Config.TG_BOT_USERNAME is not None:
-            LOGS.info("Initiating Inline Bot")
+            LOGS.info("𖠕 يتم تحميل انلاين تليثون العرب 𖠕")
             # ForTheGreatrerGood of beautification
             bot.tgbot = TelegramClient(
                 "TG_BOT_TOKEN", api_id=Config.APP_ID, api_hash=Config.API_HASH
             ).start(bot_token=Config.TG_BOT_TOKEN)
-            LOGS.info("Initialisation finished with no errors")
-            LOGS.info("Starting Userbot")
+            LOGS.info("𖠕 اكتمل تنزيل انلاين تليثون العرب بدون اخطاء 𖠕")
+            LOGS.info("𖠕 يتم بدء بوت تليثون العرب 𖠕")
             bot.loop.run_until_complete(add_bot(Config.TG_BOT_USERNAME))
-            LOGS.info("Startup Completed")
+            LOGS.info("𖠕 اكتمل بدء بوت تليثون العرب 𖠕")
         else:
             bot.start()
     except Exception as e:
@@ -55,14 +55,10 @@ for name in files:
                 os.remove(Path(f"userbot/plugins/{shortname}.py"))
         except Exception as e:
             os.remove(Path(f"userbot/plugins/{shortname}.py"))
-            LOGS.info(f"unable to load {shortname} because of error {e}")
+            LOGS.info(f"𖠕 لايمكن تحميل - {shortname} بسبب {e} 𖠕")
 
-LOGS.info("Yay your userbot is officially working.!!!")
-LOGS.info(
-    "تهانينا لقد قمت بتنصيب تليثون العرب /n
-لحسابك الشخصي قم بأرسال .alive في حسابك/n 
-وقم بمتابعه ماهو جديد في قناتنا في التليجرام : @iqthon و @YzzzY"
-)
+LOGS.info("𖠕 بوت تليثون العرب يعمل بنجاح الان 𖠕")
+LOGS.info("\n𖠕 @iqthon - اذا كنت بحاجه الى مساعده فتوجه الى 𖠕")
 
 
 async def startupmessage():
@@ -70,9 +66,8 @@ async def startupmessage():
         if Config.PRIVATE_GROUP_BOT_API_ID != 0:
             await bot.send_message(
                 Config.PRIVATE_GROUP_BOT_API_ID,
-                "*تهانينا لقد قمت بتنصيب تليثون العرب /n
-لحسابك الشخصي قم بأرسال .alive في حسابك/n 
-وقم بمتابعه ماهو جديد في قناتنا في التليجرام : @iqthon و @YzzzY",
+                "𝆹𝅥𝅮 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 - 𝗎𝗉𝖽𝖺𝗍𝖾 𝗆𝗌𝗀 𝆹𝅥𝅮\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**⪼ مبروك عزيزي اكتب الان .ايدي لترى ما اذا كان كات بوت يعمل**\
+        \n ⪼ إذا كنت بحاجة إلى مساعدة راسل مطوري\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n 𓆰 𝘚𝘖𝘜𝘙𝘊 𝘛𝘌𝘓𝘌𝘛𝘏𝘖𝘕-𝘈𝘙𝘈𝘉𝘚 𖤍 - [𝘋𝘌𝘝](t.me/iqthon)  𓆪",
                 link_preview=False,
             )
     except Exception as e:

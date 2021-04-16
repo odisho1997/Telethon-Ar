@@ -6,7 +6,7 @@ from telethon import version
 from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, reply_id
 
 DEFAULTUSER = ALIVE_NAME or "I𝐐𝐓𝐇𝐎𝐍⁦♡⁩"
-CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/583477aba4b6b294750c3.jpg"
+CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "𓆩 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙩𝙚𝙡𝙚𝙩𝙝𝙤𝙣 𝙖𝙧𝙖𝙗𝙨 𝆹𝅥𝅮"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
@@ -21,15 +21,13 @@ async def amireallyalive(alive):
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
-        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
-        cat_caption += f"**{EMOJI} قاعدة البيانات 𝆹𝅥𝅮** `{check_sgnirts}`\n"
-        cat_caption += f"**{EMOJI} اصدار التليثون  𝆹𝅥𝅮** `{version.__version__}\n`"
-        cat_caption += f"**{EMOJI} اصدار تليثون العرب 𝆹𝅥𝅮** `{catversion}`\n"
-        cat_caption += f"**{EMOJI} اصدار البايثون 𝆹𝅥𝅮** `{python_version()}\n`"
+        cat_caption += f"**{EMOJI} قاعدة البيانات 『** `{check_sgnirts}`』\n"
+        cat_caption += f"**{EMOJI} اصدار التليثون  『** `{version.__version__}』\n`"
+        cat_caption += f"**{EMOJI} اصدار تليثون العرب 『** `{catversion}`』\n"
+        cat_caption += f"**{EMOJI} اصدار البايثون 『** `{python_version()}』\n`"
         #        cat_caption += f"**{EMOJI} مدة التشغيل 𝆹𝅥𝅮** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} المستخدم 𝆹𝅥𝅮** {mention}\n"
-        cat_caption += f"**{EMOJI} مطور السورس 𝆹𝅥𝅮** [اضغط هنا](t.me/iqthon) 𓆰.\n"
-        cat_caption += f"𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
+        cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
+        cat_caption += f"**Ξ 『** [𝘚𝘖𝘜𝘙𝘊⁦](t.me/iqthon)』**قناة السورس** 𓆰.\n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )

@@ -2,11 +2,13 @@ import math
 import os
 import re
 import time
+from platform import python_version
 
 import heroku3
 import lottie
 import requests
 import spamwatch as spam_watch
+from telethon import version
 from validators.url import url
 
 from .. import *
@@ -20,11 +22,35 @@ USERID = bot.uid if Config.OWNER_ID == 0 else Config.OWNER_ID
 ALIVE_NAME = Config.ALIVE_NAME
 AUTONAME = Config.AUTONAME
 DEFAULT_BIO = Config.DEFAULT_BIO
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌"
 BOT_USERNAME = Config.TG_BOT_USERNAME
 # mention user
 mention = f"[{DEFAULTUSER}](tg://user?id={USERID})"
 hmention = f"<a href = tg://user?id={USERID}>{DEFAULTUSER}</a>"
+
+
+# Mybot cmd
+B = f"⌔𖠕 اهلا {mention} \n ⌔𖠕 بوتك هو {BOT_USERNAME}"
+
+
+# Alive Bot
+TOSH = (
+    f"**𖠕 تليثون العرب يعمل بنجاح 𖠕**\n"
+    f"**   - اصدار التليثون :** `{version.__version__}\n`"
+    f"**   - اصدار تليثون العرب :** `{catversion}`\n"
+    f"**   - البوت المستخدم :** `{BOT_USERNAME}`\n"
+    f"**   - اصدار البايثون :** `{python_version()}\n`"
+    f"**   - المستخدم :** {mention}\n"
+)
+
+# Repo
+R = (
+    "𖠕 𝘼𝙍𝘼𝘽𝙄𝘾 𝘾𝘼𝙏 - 𝙍𝙀𝙋𝙊 𓆪 \n"
+    "𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n"
+    "- 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 - 𝖽𝖾𝗏 Ξ [𝖼𝗅𝗂𝖼𝗄 𝗁𝖾𝗋𝖾 𝅘𝅥𝅮](t.me/iqthon) 𖠕 \n"
+    "- 𝗌𝗈𝗎𝗋𝖼𝖾 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 Ξ [𝖼𝗅𝗂𝖼𝗄 𝗁𝖾𝗋𝖾 𝅘𝅥𝅮](https://github.com/klanrali/telethon-Arabs) 𖠕"
+)
+K = "https://github.com/klanrali/telethon-Arabs"
 
 
 Heroku = heroku3.from_key(Config.HEROKU_API_KEY)

@@ -25,7 +25,7 @@ async def amireallyalive(alive):
         cat_caption += f"**{EMOJI} اصدار التليثون  『** `{version.__version__}』\n`"
         cat_caption += f"**{EMOJI} اصدار تليثون العرب 『** `{catversion}`』\n"
         cat_caption += f"**{EMOJI} اصدار البايثون 『** `{python_version()}』\n`"
-        #        cat_caption += f"**{EMOJI} مدة التشغيل 𝆹𝅥𝅮** `{uptime}\n`"
+        cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
         cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
         cat_caption += f"**Ξ 『** [𝘚𝘖𝘜𝘙𝘊⁦](t.me/iqthon)』**قناة السورس** 𓆰.\n"
         await alive.client.send_file(

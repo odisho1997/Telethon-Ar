@@ -37,10 +37,10 @@ async def download_video(v_url):
         myString = rmsg.text
         url = re.search("(?P<url>https?://[^\s]+)", myString).group("url")
     if not url:
-        await edit_or_reply(v_url, "What I am Supposed to find? Give link")
+        await edit_or_reply(v_url, "𖠕 ما الذي من المفترض أن أجده ؟  أعط الرابـط")
         return
     ytype = v_url.pattern_match.group(1).lower()
-    v_url = await edit_or_reply(v_url, "`Preparing to download...`")
+    v_url = await edit_or_reply(v_url, "**إحضار البيانات ، يرجى الانتظار...**")
     reply_to_id = await reply_id(v_url)
     if ytype == "a":
         opts = {
@@ -83,34 +83,34 @@ async def download_video(v_url):
         song = False
         video = True
     try:
-        await v_url.edit("`Fetching data, please wait..`")
+        await v_url.edit("** 𖠕 إحضار البيانـات ، يرجى الانتـظار **")
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url)
     except DownloadError as DE:
         await v_url.edit(f"`{str(DE)}`")
         return
     except ContentTooShortError:
-        await v_url.edit("`The download content was too short.`")
+        await v_url.edit("𖠕 محـتوى التنزيـل كان قصيرًا جدًا جـاري الارسـال")
         return
     except GeoRestrictedError:
         await v_url.edit(
-            "`Video is not available from your geographic location due to geographic restrictions imposed by a website.`"
+            "**𖠕 الفيديـو غير متـاح من موقـعك الجغرافـي بسبب القيود الجغرافية التي يفرضهـا موقع الويب**"
         )
         return
     except MaxDownloadsReached:
-        await v_url.edit("`Max-downloads limit has been reached.`")
+        await v_url.edit("**𖠕 تم الوصـول إلى الحـد الأقـصى لعدد التـنزيـلات**")
         return
     except PostProcessingError:
-        await v_url.edit("`There was an error during post processing.`")
+        await v_url.edit("**𖠕 حـدث خـطأ أثناء معالجـة ما بعد**")
         return
     except UnavailableVideoError:
-        await v_url.edit("`Media is not available in the requested format.`")
+        await v_url.edit("**𖠕 الوسـائـط غير متوفـرة بالتنسـيق المطـلوب**")
         return
     except XAttrMetadataError as XAME:
         await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
         return
     except ExtractorError:
-        await v_url.edit("`There was an error during info extraction.`")
+        await v_url.edit("**𖠕 حـدث خـطأ أثناء معالجـة ما بعد**")
         return
     except Exception as e:
         await v_url.edit(f"{str(type(e)): {str(e)}}")
@@ -123,7 +123,7 @@ async def download_video(v_url):
         catthumb = None
     if song:
         await v_url.edit(
-            f"`Preparing to upload song:`\
+            f"**𖠕 التحضـير لتحـميل الأغنـية**:`\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*"
         )
@@ -142,14 +142,14 @@ async def download_video(v_url):
             ],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                 progress(
-                    d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp3"
+                    d, t, v_url, c_time, "𖠕 جــاري تحميـل ..", f"{ytdl_data['title']}.mp3"
                 )
             ),
         )
         os.remove(f"{ytdl_data['id']}.mp3")
     elif video:
         await v_url.edit(
-            f"`Preparing to upload video:`\
+            f"**𖠕 التحـضير لتحميـل الفيـديو:**\
         \n**{ytdl_data['title']}**\
         \nby *{ytdl_data['uploader']}*"
         )
@@ -161,7 +161,7 @@ async def download_video(v_url):
             caption=ytdl_data["title"],
             progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                 progress(
-                    d, t, v_url, c_time, "Uploading..", f"{ytdl_data['title']}.mp4"
+                    d, t, v_url, c_time, "𖠕 ... جـاري تحميل ..", f"{ytdl_data['title']}.mp4"
                 )
             ),
         )
@@ -183,9 +183,9 @@ async def yt_search(event):
         query = str(event.pattern_match.group(2))
     if not query:
         return await edit_delete(
-            event, "`Reply to a message or pass a query to search!`"
+            event, "**𖠕 الـرد على رسالـة أو تمريـر استعـلام للبحـث**"
         )
-    video_q = await edit_or_reply(event, "`Searching...`")
+    video_q = await edit_or_reply(event, "**𖠕 جـاري البـحث...**")
     if event.pattern_match.group(1) != "":
         lim = int(event.pattern_match.group(1))
         if lim <= 0:

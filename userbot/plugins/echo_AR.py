@@ -1,6 +1,6 @@
 """
-created by @mrconfused and @sandy1709
-Idea by @BlazingRobonix
+created by @iqthon and @klanr
+Idea by @yzzzy
 
 """
 
@@ -30,12 +30,12 @@ async def echo(cat):
         except BaseException:
             pass
         if is_echo(user_id, chat_id):
-            await edit_or_reply(cat, "The user is already enabled with echo ")
+            await edit_or_reply(cat, "𖠕 تـم بـالفعل الـرد على الشخص")
             return
         addecho(user_id, chat_id)
         await edit_or_reply(cat, "Hi")
     else:
-        await edit_or_reply(cat, "Reply to a User's message to echo his messages")
+        await edit_or_reply(cat, "𖠕 الرد على الشخص الذي تـريد ازعاجه")
 
 
 @bot.on(admin_cmd(pattern="rmecho$"))
@@ -55,11 +55,11 @@ async def echo(cat):
             pass
         if is_echo(user_id, chat_id):
             remove_echo(user_id, chat_id)
-            await edit_or_reply(cat, "Echo has been stopped for the user")
+            await edit_or_reply(cat, "𖠕 تـم ايـقاف الازعـاج")
         else:
-            await edit_or_reply(cat, "The user is not activated with echo")
+            await edit_or_reply(cat, "𖠕 لـم يتـم تشغـيل الازعـاج علـى هذا الشـخص")
     else:
-        await edit_or_reply(cat, "Reply to a User's message to echo his messages")
+        await edit_or_reply(cat, "𖠕 الرد علـى الشخص رجـاء")
 
 
 @bot.on(admin_cmd(pattern="listecho$"))

@@ -1,4 +1,4 @@
-# by  @sandy1709 ( https://t.me/mrconfused  )
+# by  @klanr ( https://t.me/iqthon  )
 
 # songs finder for catuserbot
 # reverse search by  @Lal_bakthan
@@ -255,7 +255,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "songs": "**Plugin : **`songs`\
+        "تحميل اغنية": "**التطبيق : **`تحميل اغنية`\
         \n\n•  **Syntax : **`.song <query/reply>`\
         \n•  **Function : **__searches the song you entered in query from youtube and sends it, quality of it is 128k__\
         \n\n•  **Syntax : **`.song320 <query/reply>`\

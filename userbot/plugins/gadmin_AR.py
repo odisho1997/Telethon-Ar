@@ -1,5 +1,5 @@
 """
-credits to @mrconfused
+credits to @iqthon
 dont edit credits
 """
 #  Copyright (C) 2020  sandeep.n(π.$)

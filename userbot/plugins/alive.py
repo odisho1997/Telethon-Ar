@@ -7,7 +7,7 @@ from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, rep
 
 DEFAULTUSER = ALIVE_NAME or "I𝐐𝐓𝐇𝐎𝐍⁦♡⁩"
 CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
-CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "𓆩 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙩𝙚𝙡𝙚𝙩𝙝𝙤𝙣 𝙖𝙧𝙖𝙗𝙨 𝆹𝅥𝅮"
+CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "𓆩 𝙬𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 𝙩𝙚𝙡𝙚𝙩𝙝𝙤𝙣 𝙖𝙧𝙖𝙗𝙨 "
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
 
@@ -27,7 +27,7 @@ async def amireallyalive(alive):
         cat_caption += f"**{EMOJI} اصدار البايثون 『** `{python_version()}』\n`"
         cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
         cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
-        cat_caption += f"**Ξ 『** [𝘚𝘖𝘜𝘙𝘊⁦](t.me/iqthon)』**قناة السورس** 𓆰.\n"
+        cat_caption += f"**Ξ 『** [𝖲𝗈𝗎𝗋𝖼𝖾](t.me/iqthon)』**قناة السورس** \n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )
@@ -35,7 +35,7 @@ async def amireallyalive(alive):
     else:
         await edit_or_reply(
             alive,
-            f"**{CUSTOM_ALIVE_TEXT}**\n\n"
+            f"**{CUSTOM_ALIVE_TEXT}**\n"
             f"**{EMOJI} قاعدة البيانات 𝆹𝅥𝅮**  `{check_sgnirts}`\n"
             f"**{EMOJI} اصدار التليثون  𝆹𝅥𝅮** `{version.__version__}\n`"
             f"**{EMOJI} اصدار تليثون العرب 𝆹𝅥𝅮** `{catversion}`\n"

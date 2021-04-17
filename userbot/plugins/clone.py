@@ -58,7 +58,7 @@ async def _(event):
     await event.client(functions.photos.UploadProfilePhotoRequest(pfile))
     await event.delete()
     await event.client.send_message(
-        event.chat_id, "**LET US BE AS ONE**", reply_to=reply_message
+        event.chat_id, "**لقد قمت بأنتحالك 😹**", reply_to=reply_message
     )
     if BOTLOG:
         await event.client.send_message(
@@ -83,7 +83,7 @@ async def _(event):
     await event.client(functions.account.UpdateProfileRequest(about=bio))
     await event.client(functions.account.UpdateProfileRequest(first_name=name))
     await event.client(functions.account.UpdateProfileRequest(last_name=blank))
-    await event.edit("succesfully reverted to your account back")
+    await event.edit("𖠕 تم اعادة ضبط حسـابك بنجـاح")
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
@@ -142,7 +142,7 @@ async def get_full_user(event):
 
 CMD_HELP.update(
     {
-        "clone": "**Plugin : **`clone`\
+        "الانتحال": "**Plugin : **`انتحال`\
         \n\n  •  **Syntax :** `.clone`<reply to user whom you want to clone\
         \n  •  **Function : **clone the replied user account\
         \n\n  •  **Syntax : **`.revert`\

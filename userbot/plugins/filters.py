@@ -1,10 +1,10 @@
-# Filters for @iqthon 𝖽𝖾𝗏⁦㉨
+# ported from paperplaneExtended by avinashreddy3108 for media support
 import re
 
 from . import BOTLOG, BOTLOG_CHATID
 from .sql_helper.filter_sql import (
     add_filter,
-    get_filters
+    get_filters,
     remove_all_filters,
     remove_filter,
 )
@@ -48,10 +48,10 @@ async def add_new_filter(new_handler):
         if BOTLOG:
             await new_handler.client.send_message(
                 BOTLOG_CHATID,
-                f"#الردود\
-            \n Ξ ايدي الدردشه: {new_handler.chat_id}\
-            \n Ξ الرد: {keyword}\
-            \n Ξ يتم حفظ الرسالة التالية كبيانات رد على المستخدمين في الدردشه ، يرجى عدم حذفها !!",
+                f"#FILTER\
+            \nCHAT ID: {new_handler.chat_id}\
+            \nTRIGGER: {keyword}\
+            \n\nThe following message is saved as the filter's reply data for the chat, please do NOT delete it !!",
             )
             msg_o = await new_handler.client.forward_messages(
                 entity=BOTLOG_CHATID,
@@ -63,19 +63,19 @@ async def add_new_filter(new_handler):
         else:
             await edit_or_reply(
                 new_handler,
-                "`يتطلب حفظ الوسائط كرد على المرشح تعيين BOTLOG_CHATID.`",
+                "`Saving media as reply to the filter requires the PRIVATE_GROUP_BOT_API_ID to be set.`",
             )
             return
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = "- ❝ الرد **{}** تم {} بنجاح 𖠕."
+    success = "`Filter` **{}** `{} successfully`"
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
-        return await edit_or_reply(new_handler, success.format(keyword, "اضافته"))
+        return await edit_or_reply(new_handler, success.format(keyword, "added"))
     remove_filter(str(new_handler.chat_id), keyword)
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
-        return await edit_or_reply(new_handler, success.format(keyword, "تحديثه"))
-    await edit_or_reply(new_handler, f"خطأ أثناء تعيين عامل التصفية لـ {keyword}")
+        return await edit_or_reply(new_handler, success.format(keyword, "Updated"))
+    await edit_or_reply(new_handler, f"Error while setting filter for {keyword}")
 
 
 @bot.on(admin_cmd(pattern="filters$"))
@@ -83,16 +83,16 @@ async def add_new_filter(new_handler):
 async def on_snip_list(event):
     if event.fwd_from:
         return
-    OUT_STR = "** Ξ لاتوجـد ردود في هذه الدردشه ༗،**"
+    OUT_STR = "There are no filters in this chat."
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if OUT_STR == "** Ξ لاتوجـد ردود في هذه الدردشه ༗،**":
-            OUT_STR = "𖠕 𝗌𝗈𝗎𝗋𝖼𝖾 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 - f𝗂𝗅𝗍𝖾𝗋𝗌†\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**  Ξ قائمـه الـردود في هذه الدردشـه :  **\n"
-        OUT_STR += "Ξ {}  𖠕.\n".format(filt.keyword)
+        if OUT_STR == "There are no filters in this chat.":
+            OUT_STR = "Active filters in this chat:\n"
+        OUT_STR += "👉 `{}`\n".format(filt.keyword)
     await edit_or_reply(
         event,
         OUT_STR,
-        caption="** Ξ الردود المضـافه في هذه الدردشه ༗،**",
+        caption="Available Filters in the Current Chat",
         file_name="filters.text",
     )
 
@@ -104,9 +104,9 @@ async def remove_a_filter(r_handler):
         return
     filt = r_handler.pattern_match.group(1)
     if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit("- ❝ الرد ↫ **{}** غير موجود 𖠕.".format(filt))
+        await r_handler.edit("Filter` {} `doesn't exist.".format(filt))
     else:
-        await r_handler.edit("- ❝ الرد ↫ **{}** تم حذفه بنجاح 𖠕.".format(filt))
+        await r_handler.edit("Filter `{} `was deleted successfully".format(filt))
 
 
 @bot.on(admin_cmd(pattern="rmfilters$"))
@@ -117,25 +117,22 @@ async def on_all_snip_delete(event):
     filters = get_filters(event.chat_id)
     if filters:
         remove_all_filters(event.chat_id)
-        await edit_or_reply(
-            event,
-            f"𖠕 𝗌𝗈𝗎𝗋𝖼𝖾 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 - f𝗂𝗅𝗍𝖾𝗋𝗌†\n 𓍹ⵧⵧⵧⵧⵧⵧⵧⵧᵗᵉˡᵉᵗʰᵒᶰ ᵃʳᵃᵇˢ⁦⁦ⵧⵧⵧⵧⵧⵧⵧⵧ𓍻\n**Ξ تم حذف جـميع ردود المضافهہ بنجاح .**",
-        )
+        await edit_or_reply(event, f"filters in current chat deleted successfully")
     else:
-        await edit_or_reply(event, f"**Ξ لا توجد ردود في هذه المجموعه 𖠕،**")
+        await edit_or_reply(event, f"There are no filters in this group")
 
 
 CMD_HELP.update(
     {
         "filters": "**Plugin :**`filters`\
-    \n\n  •  **Syntax :** `.filters`\
-    \n  •  **Usage: **Lists all active (of your userbot) filters in a chat.\
-    \n\n  •  **Syntax :** `.filter`  reply to a message with .filter <keyword>\
-    \n  •  **Usage: **Saves the replied message as a reply to the 'keyword'.\
+    \n\n•  **Syntax :** `.filters`\
+    \n•  **Function : **Lists all active (of your userbot) filters in a chat.\
+    \n\n•  **Syntax :** `.filter`  reply to a message with .filter <keyword>\
+    \n•  **Function : **Saves the replied message as a reply to the 'keyword'.\
     \nThe bot will reply to the message whenever 'keyword' is mentioned. Works with everything from files to stickers.\
-    \n\n  •  **Syntax :** `.stop <keyword>`\
-    \n  •  **Usage: **Stops the specified keyword.\
-    \n\n  •  **Syntax :** `.rmfilters` \
-    \n  •  **Usage: **Removes all filters of your userbot in the chat."
+    \n\n•  **Syntax :** `.stop <keyword>`\
+    \n•  **Function : **Stops the specified keyword.\
+    \n\n•  **Syntax :** `.rmfilters` \
+    \n•  **Function : **Removes all filters of your userbot in the chat."
     }
 )

@@ -28,7 +28,7 @@ if Config.PLUGIN_CHANNEL:
             if BOTLOG:
                 await bot.send_message(
                     BOTLOG_CHATID,
-                    f"Installed Plugin `{os.path.basename(downloaded_file_name)}` successfully.",
+                    f"𖠕 جـاري التـنزيل : `{os.path.basename(downloaded_file_name)}` تـم تنـزيل بنـجاح!.",
                 )
 
     bot.loop.create_task(install())

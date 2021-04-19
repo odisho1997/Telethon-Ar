@@ -1,7 +1,6 @@
 # by  @klanr ( https://t.me/iqthon  )
 
-# songs finder for catuserbot
-# reverse search by  @Lal_bakthan
+# songs finder for telethon-Arabs
 
 import asyncio
 import base64

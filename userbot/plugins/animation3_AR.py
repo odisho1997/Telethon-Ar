@@ -43,32 +43,6 @@ async def _(event):
         deq.rotate(1)
 
 
-@bot.on(admin_cmd(pattern=r"deploy$", outgoing=True))
-@bot.on(sudo_cmd(pattern=r"deploy$", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    animation_interval = 3
-    animation_ttl = range(12)
-    event = await edit_or_reply(event, "`Deploying...`")
-    animation_chars = [
-        "**Heroku Connecting To Latest Github Build **",
-        f"**Build started by user** {mention}",
-        f"**Deploy** `535a74f0` **by user** {mention}",
-        "**Restarting Heroku Server...**",
-        "**State changed from up to starting**",
-        "**Stopping all processes with SIGTERM**",
-        "**Process exited with** `status 143`",
-        "**Starting process with command** `python3 -m userbot`",
-        "**State changed from starting to up**",
-        "__INFO:Userbot:Logged in as 557667062__",
-        "__INFO:Userbot:Successfully loaded all plugins__",
-        "**Build Succeeded**",
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 12])
-
 
 @bot.on(admin_cmd(pattern=r"dump ?(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern=r"dump ?(.*)", allow_sudo=True))
@@ -232,7 +206,7 @@ async def _(event):
         "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
         "🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴\n🔵🔵🔵⬜⬜⬜🔴🔴🔴",
         "🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵\n🔴🔴🔴⬜⬜⬜🔵🔵🔵",
-        f"{mention} **Police iz Here**",
+        f"{mention} **الـشرطه هـنا 🤫🤜**",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -298,7 +272,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "animation3": """**Plugin : **`animation3`
+        "متحركات الثالثة": """**Plugin : **`متحركات الثالثة`
         
 **Commands in animation3 are **
   •  `.star`

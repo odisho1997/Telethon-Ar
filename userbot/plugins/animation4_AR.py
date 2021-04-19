@@ -2,7 +2,7 @@ import asyncio
 
 from . import ALIVE_NAME
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Telethon-Arab"
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="kilr( (.*)|$)"))
@@ -415,7 +415,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "animation4": """**Plugin : **`animation4`
+        "متحركات الرابعة": """**Plugin : **`متحركات الرابعة`
         
 **Commands in animation4 are **
   •  `.kilr <text>`

@@ -610,7 +610,7 @@ async def get_user_from_id(user, event):
 
 CMD_HELP.update(
     {
-        "admin": "**Plugin : **`admin`\
+        "اوامر الادمن": "**Plugin : **`اوامر الادمن`\
         \n\n  •  **Syntax : **`.setgpic` <reply to image>\
         \n  •  **Usage : **Changes the group's display picture\
         \n\n  •  **Syntax : **`.promote` <username/reply> <custom rank (optional)>\

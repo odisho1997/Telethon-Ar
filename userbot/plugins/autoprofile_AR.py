@@ -1,9 +1,4 @@
-# ported from uniborg thanks to @s_n_a_p_s , @r4v4n4 ,  @spechide and @PhycoNinja13b
-#:::::Credit Time::::::
-# 1) Coded By: @s_n_a_p_s
-# 2) Ported By: @r4v4n4 (Noodz Lober)
-# 3) End Game Help By: @spechide
-# 4) Better Colour Profile Pic By @PhycoNinja13b
+
 
 import asyncio
 import base64
@@ -31,7 +26,7 @@ autopic_path = os.path.join(os.getcwd(), "userbot", "original_pic.png")
 digitalpic_path = os.path.join(os.getcwd(), "userbot", "digital_pic.png")
 autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 
-digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/aeaebe33b1f3988a0b690.jpg"
+digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
 
 
 @bot.on(admin_cmd(pattern="autopic ?(.*)"))
@@ -41,7 +36,7 @@ async def autopic(event):
     if Config.DEFAULT_PIC is None:
         return await edit_delete(
             event,
-            "**Error**\nFor functing of autopic you need to set DEFAULT_PIC var in Heroku vars",
+            "**عـذرا هنـاك خطـأ**\n وظيفة الصورة التـلقائيـة تحتاج إلى ضبط DEFAULT PIC var في Heroku vars",
             parse_mode=parse_pre,
         )
     downloader = SmartDL(Config.DEFAULT_PIC, autopic_path, progress_bar=False)
@@ -58,11 +53,11 @@ async def autopic(event):
         if gvarstatus("autopic_counter") is None:
             addgvar("autopic_counter", 30)
     if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
-        return await edit_delete(event, f"`Autopic is already enabled`")
+        return await edit_delete(event, f"`تـم تفـعيل التـغير التـلقائـي للـصور 𖠕`")
     addgvar("autopic", True)
     if input_str:
         addgvar("autopic_counter", input_str)
-    await edit_delete(event, f"`Autopic has been started by my Master`")
+    await edit_delete(event, f"`بـدأ التـغيـر الصور التـلقائي 𖠕`")
     await autopicloop()
 
 
@@ -107,9 +102,9 @@ async def _(event):
     if event.fwd_from:
         return
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
-        return await edit_delete(event, f"`Autoname is already enabled`")
+        return await edit_delete(event, f"`الاسم التلقائي ممكّن بالفعل 𖠕`")
     addgvar("autoname", True)
-    await edit_delete(event, "`AutoName has been started by my Master `")
+    await edit_delete(event, "` تـم بـدأ الاسـم التـلقائـي `")
     await autoname_loop()
 
 
@@ -290,7 +285,7 @@ async def bloom_pfploop():
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
         ofnt = ImageFont.truetype(FONT_FILE_TO_USE, 250)
         drawn_text.text((95, 250), current_time, font=fnt, fill=(FR, FG, FB))
-        drawn_text.text((95, 250), "      😈", font=ofnt, fill=(FR, FG, FB))
+        drawn_text.text((95, 250), " 𖠕", font=ofnt, fill=(FR, FG, FB))
         img.save(autophoto_path)
         file = await bot.upload_file(autophoto_path)
         try:
@@ -307,7 +302,7 @@ async def autoname_loop():
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
-        name = f"⌚️ {HM}||›  {DEFAULTUSER} ‹||📅 {DM}"
+        name = f"𖠕 {HM} - {DEFAULTUSER} "
         LOGS.info(name)
         try:
             await bot(functions.account.UpdateProfileRequest(first_name=name))
@@ -323,7 +318,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%H:%M:%S")
-        bio = f"📅 {DMY} | {DEFAULTUSERBIO} | ⌚️ {HM}"
+        bio = f" - {DEFAULTUSERBIO} - 𖠕 {HM}"
         LOGS.info(bio)
         try:
             await bot(functions.account.UpdateProfileRequest(about=bio))

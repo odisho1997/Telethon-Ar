@@ -1,7 +1,4 @@
-# Thanks to @AvinashReddy3108 for this plugin
-# Instadl by @Jisan7509
-# youtube plugin for catuserbot
-# yts from https://github.com/rojserbest/VoiceChatPyroBot/blob/main/handlers/inline.py
+
 
 import asyncio
 import os
@@ -243,7 +240,7 @@ async def kakashi(event):
 
 CMD_HELP.update(
     {
-        "ytdl": "**Plugin :** `ytdl`\
+        "تحميل رابط": "**Plugin :** `تحميل رابط`\
     \n\n  •  **Syntax :** `.yta link`\
     \n  •  **Function : **__downloads the audio from the given link(Suports the all sites which support youtube-dl)__\
     \n\n  •  **Syntax : **`.ytv link`\

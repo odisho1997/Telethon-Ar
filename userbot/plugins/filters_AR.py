@@ -1,4 +1,4 @@
-# ported from paperplaneExtended by avinashreddy3108 for media support
+# @iqthon
 import re
 
 from . import BOTLOG, BOTLOG_CHATID
@@ -63,19 +63,19 @@ async def add_new_filter(new_handler):
         else:
             await edit_or_reply(
                 new_handler,
-                "`Saving media as reply to the filter requires the PRIVATE_GROUP_BOT_API_ID to be set.`",
+                "`يتطلب حفظ الوسائط كرد على عامل التصفية تعيين PRIVATE_GROUP_BOT_API_ID.`",
             )
             return
     elif new_handler.reply_to_msg_id and not string:
         rep_msg = await new_handler.get_reply_message()
         string = rep_msg.text
-    success = "`Filter` **{}** `{} successfully`"
+    success = "`الـرد` **{}** `{} تـم اضـافتة بنـجـاح 𖠕`"
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         return await edit_or_reply(new_handler, success.format(keyword, "added"))
     remove_filter(str(new_handler.chat_id), keyword)
     if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
         return await edit_or_reply(new_handler, success.format(keyword, "Updated"))
-    await edit_or_reply(new_handler, f"Error while setting filter for {keyword}")
+    await edit_or_reply(new_handler, f"𖠕 خطـأ اثنـاء تعيـن الـرد {keyword}")
 
 
 @bot.on(admin_cmd(pattern="filters$"))
@@ -83,16 +83,16 @@ async def add_new_filter(new_handler):
 async def on_snip_list(event):
     if event.fwd_from:
         return
-    OUT_STR = "There are no filters in this chat."
+    OUT_STR = "لا توجد مرشحات في هذه الدردشة."
     filters = get_filters(event.chat_id)
     for filt in filters:
-        if OUT_STR == "There are no filters in this chat.":
-            OUT_STR = "Active filters in this chat:\n"
+        if OUT_STR == "لا توجد مرشحات في هذه الدردشة.":
+            OUT_STR = "عوامل التصفية النشطة في هذه الدردشة:\n"
         OUT_STR += "👉 `{}`\n".format(filt.keyword)
     await edit_or_reply(
         event,
         OUT_STR,
-        caption="Available Filters in the Current Chat",
+        caption="المرشحات المتاحة في الدردشة الحالية",
         file_name="filters.text",
     )
 
@@ -104,9 +104,9 @@ async def remove_a_filter(r_handler):
         return
     filt = r_handler.pattern_match.group(1)
     if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit("Filter` {} `doesn't exist.".format(filt))
+        await r_handler.edit("الـرد` {} `غير موجود.".format(filt))
     else:
-        await r_handler.edit("Filter `{} `was deleted successfully".format(filt))
+        await r_handler.edit("الـرد `{} `تـم حـذفة بنـجـاح 𖠕".format(filt))
 
 
 @bot.on(admin_cmd(pattern="rmfilters$"))
@@ -117,14 +117,14 @@ async def on_all_snip_delete(event):
     filters = get_filters(event.chat_id)
     if filters:
         remove_all_filters(event.chat_id)
-        await edit_or_reply(event, f"filters in current chat deleted successfully")
+        await edit_or_reply(event, f"تم حذف المرشحات في الدردشة الحالية بنجاح 𖠕")
     else:
-        await edit_or_reply(event, f"There are no filters in this group")
+        await edit_or_reply(event, f"لا توجد فلاتر في هذه المجموعة 𖠕")
 
 
 CMD_HELP.update(
     {
-        "filters": "**Plugin :**`filters`\
+        "الردود": "**Plugin :**`الردود`\
     \n\n•  **Syntax :** `.filters`\
     \n•  **Function : **Lists all active (of your userbot) filters in a chat.\
     \n\n•  **Syntax :** `.filter`  reply to a message with .filter <keyword>\

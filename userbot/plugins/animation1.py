@@ -59,41 +59,11 @@ async def _(event):
     await asyncio.sleep(0.5)
     await event.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n😵😵😵😵 \n")
     await asyncio.sleep(0.5)
-    await event.edit("`RIP PLOXXX......`")
+    await event.edit("`تـم التـفجيـر 🥺😹......`")
     await asyncio.sleep(2)
 
 
-@bot.on(admin_cmd(pattern=r"call$"))
-@bot.on(sudo_cmd(pattern=r"call$", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    animation_interval = 3
-    animation_ttl = range(18)
-    event = await edit_or_reply(event, "Calling Pavel Durov (ceo of telegram)......")
-    animation_chars = [
-        "`Connecting To Telegram Headquarters...`",
-        "`Call Connected.`",
-        "`Telegram: Hello This is Telegram HQ. Who is this?`",
-        f"`Me: Yo this is` {DEFAULTUSER} ,`Please Connect me to my lil bro, Pavel Durov `",
-        "`User Authorised.`",
-        "`Calling Pavel Durov `  `At +916969696969`",
-        "`Private  Call Connected...`",
-        "`Me: Hello Sir, Please Ban This Telegram Account.`",
-        "`Pavel Durov : May I Know Who is This?`",
-        f"`Me: Yo Brah, I Am` {DEFAULTUSER} ",
-        "`Pavel Durov : OMG!!! Long time no see, Wassup cat...\nI'll Make Sure That Guy Account Will Get Blocked Within 24Hrs.`",
-        "`Me: Thanks, See You Later Brah.`",
-        "`Pavel Durov : Please Don't Thank Brah, Telegram Is Our's. Just Gimme A Call When You Become Free.`",
-        "`Me: Is There Any Issue/Emergency???`",
-        "`Pavel Durov : Yes Sur, There is A Bug in Telegram v69.6.9.\nI Am Not Able To Fix It. If Possible, Please Help Fix The Bug.`",
-        "`Me: Send Me The App On My Telegram Account, I Will Fix The Bug & Send You.`",
-        "`Pavel Durov : Sure Sur \nTC Bye Bye :)`",
-        "`Private Call Disconnected.`",
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 18])
+
 
 
 @bot.on(admin_cmd(pattern=f"kill$", outgoing=True))
@@ -116,7 +86,7 @@ async def _(event):
         "------------------>",
         "------>;(^。^)ノ",
         "(￣ー￣) DEAD",
-        "`Targeted user killed by Headshot 😈.😈.😈.😈.😈.😈.😈......`\n '#Sad_Reacts_Online'\n",
+        "`تـم قتـلك بنـجاح 🙂💔'\n",
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
@@ -231,7 +201,7 @@ async def _(event):
     await asyncio.sleep(0.3)
     await event.edit("🔥🔥🔥")
     await asyncio.sleep(0.3)
-    await event.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
+    await event.edit("- @iqthon 🔥🔥🔥")
 
 
 @bot.on(admin_cmd(pattern=f"charging$"))
@@ -259,7 +229,7 @@ async def timer_blankx(e):
 
 CMD_HELP.update(
     {
-        "animation1": """**Plugin : **`animation1`
+        "متحركات الاولى": """**Plugin : **`متحركات الاولى`
         
 **Commands in animation1 are **
   •  `.stupid`

@@ -39,14 +39,13 @@ async def _(event):
         )
         await asyncio.sleep(10)
         await no_admin_privilege_message.edit(
-            "This is useless SPAM dude. Stop this, enjoy chat man ", link_preview=False
+            "𖠕 تحـذير توقف عـن التكرار سـيتم حـظرك  ", link_preview=False
         )
     else:
         await event.client.send_message(
             entity=event.chat_id,
             message="""**Automatic AntiFlooder**
-[User](tg://user?id={}) has been automatically restricted
-because he reached the defined flood limit.""".format(
+[User](tg://user?id={}) تـم تقـيدة تـلقائيا بسبـب وصـولة الحـد. الاقصى من تكـرار.""".format(
                 event.message.sender_id
             ),
             reply_to=event.message.id,

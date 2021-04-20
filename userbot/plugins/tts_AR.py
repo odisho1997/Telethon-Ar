@@ -26,7 +26,7 @@ async def _(event):
     elif "|" in input_str:
         lan, text = input_str.split("|")
     else:
-        await edit_or_reply(event, "Invalid Syntax. Module stopping.")
+        await edit_or_reply(event, "بناء جملة غير صالح.  توقف الوحدة.")
         return
     text = deEmojify(text.strip())
     lan = lan.strip()
@@ -66,14 +66,14 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             required_file_name,
-            # caption="Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms),
+            # caption="جـاري المعـالجة {} ({}) in {} ثـواني!".format(text[0:97], lan, ms),
             reply_to=event.message.reply_to_msg_id,
             allow_cache=False,
             voice_note=True,
         )
         os.remove(required_file_name)
         event = await edit_or_reply(
-            event, "Processed {} ({}) in {} seconds!".format(text[0:97], lan, ms)
+            event, "جـاري المعـالجة {} ({}) in {} ثـواني!".format(text[0:97], lan, ms)
         )
         await asyncio.sleep(5)
         await event.delete()

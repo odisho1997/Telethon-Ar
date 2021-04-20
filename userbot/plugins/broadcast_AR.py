@@ -15,13 +15,13 @@ async def catbroadcast_send(event):
     catinput_str = event.pattern_match.group(1)
     if not catinput_str:
         return await edit_delete(
-            event, "To which category should i send this message", parse_mode=parse_pre
+            event, "إلى أي فئة يجب أن أرسل هذه الرسالة 𖠕", parse_mode=parse_pre
         )
     reply = await event.get_reply_message()
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if not reply:
         return await edit_delete(
-            event, "what should i send to to this category ?", parse_mode=parse_pre
+            event, "ماذا علي أن أرسل إلى هذه الفئة؟ 𖠕", parse_mode=parse_pre
         )
     keyword = catinput_str.lower()
     no_of_chats = sql.num_broadcastlist_chat(keyword)
@@ -29,13 +29,13 @@ async def catbroadcast_send(event):
     if no_of_chats == 0:
         return await edit_delete(
             event,
-            f"There is no category with name {keyword}. Check '.listall'",
+            f"لا توجد فئة بالاسم 𖠕 {keyword}. للتـأكد أرسـل '.listall'𖠕",
             parse_mode=parse_pre,
         )
     chats = sql.get_chat_broadcastlist(keyword)
     catevent = await edit_or_reply(
         event,
-        "sending this message to all groups in the category",
+        "إرسال هذه الرسالة إلى كافة المجموعات في الفئة 𖠕",
         parse_mode=parse_pre,
     )
     try:
@@ -52,12 +52,12 @@ async def catbroadcast_send(event):
         except Exception as e:
             LOGS.info(str(e))
         await sleep(0.5)
-    resultext = f"`The message was sent to {i} chats out of {no_of_chats} chats in category {keyword}.`"
+    resultext = f"`تم إرسال الرسالة إلى 𖠕 {i} الدردشات من {no_of_chats} الدردشات في الفئة {keyword}.`𖠕"
     await catevent.edit(resultext)
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"A message is sent to {i} chats out of {no_of_chats} chats in category {keyword}",
+            f"تم إرسال رسالة إلى {i} الدردشات من {no_of_chats} الدردشات في الفئة {keyword} 𖠕",
             parse_mode=parse_pre,
         )
 
@@ -70,13 +70,13 @@ async def catbroadcast_send(event):
     catinput_str = event.pattern_match.group(1)
     if not catinput_str:
         return await edit_delete(
-            event, "To which category should i send this message", parse_mode=parse_pre
+            event, "إلى أي فئة يجب أن أرسل هذه الرسالة 𖠕", parse_mode=parse_pre
         )
     reply = await event.get_reply_message()
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if not reply:
         return await edit_delete(
-            event, "what should i send to to this category ?", parse_mode=parse_pre
+            event, "ماذا علي أن أرسل إلى هذه الفئة؟ 𖠕", parse_mode=parse_pre
         )
     keyword = catinput_str.lower()
     no_of_chats = sql.num_broadcastlist_chat(keyword)
@@ -84,13 +84,13 @@ async def catbroadcast_send(event):
     if no_of_chats == 0:
         return await edit_delete(
             event,
-            f"There is no category with name {keyword}. Check '.listall'",
+            f"لا توجد فئة بالاسم {keyword}. تـاكد مـن خلال ارسـال أمر '.listall' 𖠕",
             parse_mode=parse_pre,
         )
     chats = sql.get_chat_broadcastlist(keyword)
     catevent = await edit_or_reply(
         event,
-        "sending this message to all groups in the category",
+        "إرسال هذه الرسالة إلى كافة المجموعات في الفئة 𖠕",
         parse_mode=parse_pre,
     )
     try:
@@ -107,12 +107,12 @@ async def catbroadcast_send(event):
         except Exception as e:
             LOGS.info(str(e))
         await sleep(0.5)
-    resultext = f"`The message was sent to {i} chats out of {no_of_chats} chats in category {keyword}.`"
+    resultext = f"`تم إرسال الرسالة إلى {i} الدردشات في الفئة {no_of_chats} هـذة {keyword}.`"
     await catevent.edit(resultext)
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            f"A message is forwared to {i} chats out of {no_of_chats} chats in category {keyword}",
+            f"يتم إعادة توجيه رسالة إلى {i} الدردشات من {no_of_chats} هـذا الفئـة {keyword}",
             parse_mode=parse_pre,
         )
 
@@ -125,32 +125,32 @@ async def catbroadcast_add(event):
     catinput_str = event.pattern_match.group(1)
     if not catinput_str:
         return await edit_delete(
-            event, "In which category should i add this chat", parse_mode=parse_pre
+            event, "في أي فئة يجب أن أضيف هذه الدردشة 𖠕", parse_mode=parse_pre
         )
     keyword = catinput_str.lower()
     check = sql.is_in_broadcastlist(keyword, event.chat_id)
     if check:
         return await edit_delete(
             event,
-            f"This chat is already in this category {keyword}",
+            f"هذه الدردشة موجودة بالفعل في هذه الفئة {keyword} 𖠕",
             parse_mode=parse_pre,
         )
     sql.add_to_broadcastlist(keyword, event.chat_id)
     await edit_delete(
-        event, f"This chat is Now added to category {keyword}", parse_mode=parse_pre
+        event, f"تمت إضافة هذه الدردشة الآن إلى الفئة {keyword} 𖠕", parse_mode=parse_pre
     )
     chat = await event.get_chat()
     if BOTLOG:
         try:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The Chat {chat.title} is added to category {keyword}",
+                f"هـذا المحـادثة {chat.title} is added to category {keyword}",
                 parse_mode=parse_pre,
             )
         except Exception:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The user {chat.first_name} is added to category {keyword}",
+                f"The user {chat.first_name} يضاف إلى الفئة {keyword}",
                 parse_mode=parse_pre,
             )
 
@@ -163,18 +163,18 @@ async def catbroadcast_remove(event):
     catinput_str = event.pattern_match.group(1)
     if not catinput_str:
         return await edit_delete(
-            event, "From which category should i remove this chat", parse_mode=parse_pre
+            event, "من أي فئة يجب أن أزيل هذه الدردشة 𖠕", parse_mode=parse_pre
         )
     keyword = catinput_str.lower()
     check = sql.is_in_broadcastlist(keyword, event.chat_id)
     if not check:
         return await edit_delete(
-            event, f"This chat is not in the category {keyword}", parse_mode=parse_pre
+            event, f"هذه الدردشة ليست في الفئة : {keyword} 𖠕", parse_mode=parse_pre
         )
     sql.rm_from_broadcastlist(keyword, event.chat_id)
     await edit_delete(
         event,
-        f"This chat is Now removed from the category {keyword}",
+        f"تمت إزالة هذه الدردشة الآن من الفئة : {keyword}",
         parse_mode=parse_pre,
     )
     chat = await event.get_chat()
@@ -182,13 +182,13 @@ async def catbroadcast_remove(event):
         try:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The Chat {chat.title} is removed from category {keyword}",
+                f"المحادثة {chat.title} تمت إزالته من الفئة {keyword}",
                 parse_mode=parse_pre,
             )
         except Exception:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The user {chat.first_name} is removed from category {keyword}",
+                f"المسـتخدم {chat.first_name} تمت إزالته من الفئة {keyword}",
                 parse_mode=parse_pre,
             )
 
@@ -202,7 +202,7 @@ async def catbroadcast_list(event):
     if not catinput_str:
         return await edit_delete(
             event,
-            "Which category Chats should i list ?\nCheck .listall",
+            "ما هي فئة الدردشات التي يجب أن أضعها في ألسـتة ?\nتـاكد من خلال ارسـال أمـر  .listall",
             parse_mode=parse_pre,
         )
     keyword = catinput_str.lower()
@@ -210,28 +210,28 @@ async def catbroadcast_list(event):
     if no_of_chats == 0:
         return await edit_delete(
             event,
-            f"There is no category with name {keyword}. Check '.listall'",
+            f"لا توجد فئة بالاسم : {keyword}. تأكد من خـلال ارسـال أمر  '.listall' 𖠕",
             parse_mode=parse_pre,
         )
     chats = sql.get_chat_broadcastlist(keyword)
     catevent = await edit_or_reply(
         event, f"Fetching info of the category {keyword}", parse_mode=parse_pre
     )
-    resultlist = f"**The category '{keyword}' have '{no_of_chats}' chats and these are listed below :**\n\n"
+    resultlist = f"**الفـئة '{keyword}' لـديك '{no_of_chats}' الدردشات وهذه مذكورة أدناه 𖠕 :**\n\n"
     errorlist = ""
     for chat in chats:
         try:
             chatinfo = await event.client.get_entity(int(chat))
             try:
                 if chatinfo.broadcast:
-                    resultlist += f" 👉 📢 **Channel** \n  •  **Name : **{chatinfo.title} \n  •  **id : **`{int(chat)}`\n\n"
+                    resultlist += f" 👉 📢 **القـنوات** \n  •  **الاسـم : **{chatinfo.title} \n  •  **الايـدي : **`{int(chat)}`\n\n"
                 else:
-                    resultlist += f" 👉 👥 **Group** \n  •  **Name : **{chatinfo.title} \n  •  **id : **`{int(chat)}`\n\n"
+                    resultlist += f" 👉 👥 **المجـموعات** \n  •  **الاسـم : **{chatinfo.title} \n  •  **الايـدي : **`{int(chat)}`\n\n"
             except AttributeError:
-                resultlist += f" 👉 👤 **User** \n  •  **Name : **{chatinfo.first_name} \n  •  **id : **`{int(chat)}`\n\n"
+                resultlist += f" 👉 👤 **المـعرفات** \n  •  **الاسـم : **{chatinfo.first_name} \n  •  **الايـدي : **`{int(chat)}`\n\n"
         except Exception:
-            errorlist += f" 👉 __This id {int(chat)} in database probably you may left the chat/channel or may be invalid id.\
-                            \nRemove this id from the database by using this command__ `.frmfrom {keyword} {int(chat)}` \n\n"
+            errorlist += f" 👉 هـذا الايـدي {int(chat)} في قاعدة البيانات ربما يمكنك ترك الدردشة/قناة أو قد يكون معرف غير صالح.\
+                            \nقم بإزالة هذا المعرف من قاعدة البيانات باستخدام هذا الامـر:  `.frmfrom {keyword} {int(chat)}` \n\n"
     finaloutput = resultlist + errorlist
     await edit_or_reply(catevent, finaloutput)
 
@@ -244,11 +244,11 @@ async def catbroadcast_list(event):
     if sql.num_broadcastlist_chats() == 0:
         return await edit_delete(
             event,
-            "you haven't created at least one category  check info for more help",
+            "لم تقم بإنشاء معلومات فحص فئة واحدة على الأقل للحصول على مزيد من المساعدة راسل @klanr",
             parse_mode=parse_pre,
         )
     chats = sql.get_broadcastlist_chats()
-    resultext = "**Here are the list of your category's :**\n\n"
+    resultext = "**فيما يلي قائمة الفئات الخاصة بك 𖠕 :**\n\n"
     for i in chats:
         resultext += f" 👉 `{i}` __contains {sql.num_broadcastlist_chat(i)} chats__\n"
     await edit_or_reply(event, resultext)
@@ -262,13 +262,13 @@ async def catbroadcast_remove(event):
     catinput_str = event.pattern_match.group(1)
     if not catinput_str:
         return await edit_delete(
-            event, "From which category should i remove this chat", parse_mode=parse_pre
+            event, "من أي فئة يجب أن أزيل هذه الدردشة 𖠕", parse_mode=parse_pre
         )
     args = catinput_str.split(" ")
     if len(args) != 2:
         return await edit_delete(
             event,
-            "Use proper syntax as shown .frmfrom category_name groupid",
+            "استخدم بناء الجملة الصحيح كما هو موضح. frmfrom category_name groupid 𖠕",
             parse_mode=parse_pre,
         )
     try:
@@ -281,7 +281,7 @@ async def catbroadcast_remove(event):
         except ValueError:
             return await edit_delete(
                 event,
-                "Use proper syntax as shown .frmfrom category_name groupid",
+                "استخدم بناء الجملة الصحيح كما هو موضح. frmfrom category_name groupid 𖠕",
                 parse_mode=parse_pre,
             )
     keyword = keyword.lower()
@@ -289,13 +289,13 @@ async def catbroadcast_remove(event):
     if not check:
         return await edit_delete(
             event,
-            f"This chat {groupid} is not in the category {keyword}",
+            f"المحـادثة {groupid} ليس في هذه الفئة {keyword}",
             parse_mode=parse_pre,
         )
     sql.rm_from_broadcastlist(keyword, groupid)
     await edit_delete(
         event,
-        f"This chat {groupid} is Now removed from the category {keyword}",
+        f"المحـادثة {groupid} تمت إزالته الآن من الفئة {keyword} 𖠕",
         parse_mode=parse_pre,
     )
     chat = await event.get_chat()
@@ -303,13 +303,13 @@ async def catbroadcast_remove(event):
         try:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The Chat {chat.title} is removed from category {keyword}",
+                f"المـحادثة {chat.title} تمت إزالته من الفئة {keyword} 𖠕",
                 parse_mode=parse_pre,
             )
         except Exception:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                f"The user {chat.first_name} is removed from category {keyword}",
+                f"المحـادثة {chat.first_name} تمت إزالته من الفئة {keyword}",
                 parse_mode=parse_pre,
             )
 
@@ -324,15 +324,15 @@ async def catbroadcast_delete(event):
     if check1 < 1:
         return await edit_delete(
             event,
-            f"Are you sure that there is category {catinput_str}",
+            f"هل أنت متأكد من أن هناك فئة {catinput_str}",
             parse_mode=parse_pre,
         )
     try:
         sql.del_keyword_broadcastlist(catinput_str)
         await edit_or_reply(
             event,
-            f"Successfully deleted the category {catinput_str}",
-            parse_mode=parse_pre,
+            f"تم حذف الفئة بنجاح {catinput_str}",
+            parse_mode=parse_pre
         )
     except Exception as e:
         await edit_delete(
@@ -344,7 +344,7 @@ async def catbroadcast_delete(event):
 
 CMD_HELP.update(
     {
-        "broadcast": """**Plugin : ** `broadcast`
+        "نشر الكل": """**Plugin : ** `نشر الكل`
 
   •  **Syntax : **`.sendto category_name`
   •  **Function : **__will send the replied message to all the chats in give category__

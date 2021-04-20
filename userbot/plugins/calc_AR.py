@@ -1,4 +1,4 @@
-# credits to @mrconfused
+# credits to @klanr
 import io
 import sys
 import traceback
@@ -8,7 +8,7 @@ import traceback
 @bot.on(sudo_cmd(pattern="calc (.*)", allow_sudo=True))
 async def _(car):
     cmd = car.text.split(" ", maxsplit=1)[1]
-    event = await edit_or_reply(car, "Calculating ...")
+    event = await edit_or_reply(car, "جـاري الحسـاب ...")
     old_stderr = sys.stderr
     old_stdout = sys.stdout
     redirected_output = sys.stdout = io.StringIO()
@@ -31,8 +31,8 @@ async def _(car):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Sorry I can't find result for the given equation"
-    final_output = "**EQUATION**: `{}` \n\n **SOLUTION**: \n`{}` \n".format(
+        evaluation = "آسف ، لا يمكنني العثور على نتيجة للمعادلة المحددة 𖠕"
+    final_output = "**معادلة**: `{}` \n\n **الحـل**: \n`{}` \n".format(
         cmd, evaluation
     )
     await event.edit(final_output)
@@ -45,7 +45,7 @@ async def aexec(code, event):
 
 CMD_HELP.update(
     {
-        "calc": "**Plugin : **`calc`\
+        "حاسبة": "**Plugin : **`حاسبة`\
         \n\n**Syntax : **`.calc expression` \
         \n**Function : **solves the given maths equation by BODMAS rule. "
     }

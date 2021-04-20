@@ -112,10 +112,10 @@ async def fetch_info(replied_user, event):
     caption += f"<b> • ⚜️ | 𝗎𝗌𝗋 ↬</b> {username}\n"
     caption += f"<b> • ⚜️ | 𝗂𝖽 ↬</b> <code>{user_id}</code>\n"
     caption += f"<b> • ⚜️ | 𝗇𝗎𝗆𝖻𝖾𝗋 𝗈f 𝗉𝗁𝗈𝗍𝗈𝗌 ↬</b> {replied_user_profile_photos_count}\n"
-    caption += f"<b> • ⚜️ | 𝖻𝗂𝗈⁦ ↬ </b> \n {user_bio} \n"
-    caption += f"<b> • ⚜️ | 𝗍𝗁𝖾 𝗅𝗂𝗇𝗄 ↬</b> "
-    caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-    caption += f"<b> 𓆩 𝗌𝗈𝗎𝗋𝖼𝖾 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 </b> 𝖽𝖾𝗏⁦㉨ - @IQTHON 𓆪 "
+    caption += f"<b> • ⚜️ | 𝖻𝗂𝗈⁦ ↬ </b> {user_bio} \n"
+    caption += f"<b> • ⚜️ | 𝗍𝗁𝖾 𝗅𝗂𝗇𝗄 ↬</b> \n"
+    caption += f'<a href="tg://user?id={user_id}">{first_name}</a> \n'
+    caption += f"<b> 𓆩 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇-𝖺𝗋𝖺𝖻𝗌 </b> - @IQTHON 𓆪 "
     return photo, caption
 
 

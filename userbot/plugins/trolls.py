@@ -1,5 +1,5 @@
-# credits to @mrconfused and @sandy1709
-#    Copyright (C) 2020  sandeep.n(π.$)
+# credits to @klanr
+#    Copyright (C) 2020  @iqthon
 
 import base64
 import os
@@ -18,7 +18,7 @@ async def catbot(catmemes):
     replied = await catmemes.get_reply_message()
     catid = await reply_id(catmemes)
     if not replied:
-        await edit_or_reply(catmemes, "reply to a supported media file")
+        await edit_or_reply(catmemes, "الرد على ملف وسائط مدعوم")
         return
     output = await _cattools.media_to_pic(catmemes, replied)
     san = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -31,7 +31,7 @@ async def catbot(catmemes):
         pass
     if size > 5242880:
         await output[0].edit(
-            "the replied file size is not supported it must me below 5 mb"
+            "حجم الملف الذي تم الرد عليه غير مدعوم ، يجب أن يكون حجمه أقل من 5 ميغابايت 𖠕"
         )
         os.remove(download_location)
         return
@@ -40,7 +40,7 @@ async def catbot(catmemes):
     try:
         response = upload_file(download_location)
     except exceptions.TelegraphException as exc:
-        await output[0].edit(f"**Error: **\n`{str(exc)}`")
+        await output[0].edit(f"**يـوجد هنـالك خـطأ: **\n`{str(exc)}`")
         os.remove(download_location)
         return
     cat = f"https://telegra.ph{response[0]}"

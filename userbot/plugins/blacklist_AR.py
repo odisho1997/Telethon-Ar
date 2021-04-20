@@ -1,6 +1,3 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
 """Filters
 Available Commands:
 .addblacklist
@@ -41,7 +38,7 @@ async def on_add_black_list(event):
         sql.add_to_blacklist(event.chat_id, trigger.lower())
     await edit_or_reply(
         event,
-        "Added {} triggers to the blacklist in the current chat".format(
+        "مـضاف {} الـى القائمه السـوداء تـم حظـر الكـلمة 𖠕".format(
             len(to_blacklist)
         ),
     )
@@ -62,7 +59,7 @@ async def on_delete_blacklist(event):
     )
 
     await edit_or_reply(
-        event, f"Removed {successful} / {len(to_unblacklist)} from the blacklist"
+        event, f"تـم حـذف الكـلمة {successful} / {len(to_unblacklist)} : مـن القائـمة السـوداء 𖠕"
     )
 
 
@@ -70,12 +67,12 @@ async def on_delete_blacklist(event):
 @bot.on(sudo_cmd(pattern="listblacklist$", allow_sudo=True))
 async def on_view_blacklist(event):
     all_blacklisted = sql.get_chat_blacklist(event.chat_id)
-    OUT_STR = "Blacklists in the Current Chat:\n"
+    OUT_STR = "القوائم السوداء في الدردشة الحالية:\n"
     if len(all_blacklisted) > 0:
         for trigger in all_blacklisted:
             OUT_STR += f"👉 {trigger} \n"
     else:
-        OUT_STR = "No Blacklists found. Start saving using `.addblacklist`"
+        OUT_STR = "لاتـوجد قـائمة سـوداء حاليـا لأضـافه كلـمه الى القائمه استعمل أمر 𖠕 `.addblacklist`"
     if len(OUT_STR) > Config.MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(OUT_STR)) as out_file:
             out_file.name = "blacklist.text"
@@ -84,7 +81,7 @@ async def on_view_blacklist(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="Blacklists in the Current Chat",
+                caption="القوائم السوداء في الدردشة الحالية 𖠕",
                 reply_to=event,
             )
             await event.delete()
@@ -94,7 +91,7 @@ async def on_view_blacklist(event):
 
 CMD_HELP.update(
     {
-        "blacklist": "**blacklist**\
+        "حظر كلمة": "**حظر كلمة**\
     \n**Syntax : **`.addblacklist` <word/words>\
     \n**Usage : **The given word or words will be added to blacklist in that specific chat if any user sends then the message gets deleted.\
     \n\n**Syntax : **`.rmblacklist` <word/words>\

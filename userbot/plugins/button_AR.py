@@ -1,6 +1,4 @@
-#    Copyright (C) 2020  sandeep.n(π.$)
-# button post makker for catuserbot thanks to uniborg for the base
-# by @sandy1709 (@mrconfused)
+
 import os
 import re
 
@@ -8,8 +6,7 @@ from telethon import Button
 
 from . import BOT_USERNAME
 
-# regex obtained from:
-# https://github.com/PaulSonOfLars/tgbot/blob/master/tg_bot/modules/helper_funcs/string_handling.py#L23
+
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 
 
@@ -24,7 +21,7 @@ async def _(event):
     else:
         markdown_note = "".join(event.text.split(maxsplit=1)[1:])
     if not markdown_note:
-        return await edit_delete(event, "`what text should i use in button post`")
+        return await edit_delete(event, "`ما النص الذي يجب أن أستخدمه في زر آخر 𖠕`")
     prev = 0
     note_data = ""
     buttons = []
@@ -85,7 +82,7 @@ async def _(event):
     else:
         markdown_note = "".join(event.text.split(maxsplit=1)[1:])
     if not markdown_note:
-        return await edit_delete(event, "`what text should i use in button post`")
+        return await edit_delete(event, "`ما النص الذي يجب أن أستخدمه في زر آخر 𖠕`")
     catinput = "Inline buttons " + markdown_note
     results = await event.client.inline_query(BOT_USERNAME, catinput)
     await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)
@@ -104,14 +101,14 @@ def build_keyboard(buttons):
 
 CMD_HELP.update(
     {
-        "button": f"**Plugin : **`button`\
+        "لستة": f"**Plugin : **`لستة`\
     \n\n**Button post helper**\
     \n•  **Syntax : **`.cbutton`\
     \n•  **Function :** __For working of this you need your bot({BOT_USERNAME}) in the group/channel you are using and Buttons must be in the format as [Name on button]<buttonurl:link you want to open> and markdown is Default to html__\
-    \n•  **Example :** `.cbutton test [google]<buttonurl:https://www.google.com> [catuserbot]<buttonurl:https://t.me/catuserbot17:same> [support]<buttonurl:https://t.me/catuserbot_support>`\
+    \n•  **Example :** `.cbutton test [google]<buttonurl:https://www.google.com> [telethon]<buttonurl:https://t.me/iqthon:same> [file]<buttonurl:https://t.me/yzzzy>`\
     \n\n•  **Syntax : **`.ibutton`\
     \n•  **Function :** __Buttons must be in the format as [Name on button]<buttonurl:link you want to open>__\
-    \n•  **Example :** `.ibutton test [google]<buttonurl:https://www.google.com> [catuserbot]<buttonurl:https://t.me/catuserbot17:same> [support]<buttonurl:https://t.me/catuserbot_support>`\
+    \n•  **Example :** `.ibutton test [google]<buttonurl:https://www.google.com> [telethon]<buttonurl:https://t.me/iqthon:same> [files]<buttonurl:https://t.me/yzzzy>`\
     "
     }
 )

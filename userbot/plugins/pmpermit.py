@@ -289,7 +289,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         return None
 
 
-@bot.on(events.NewMessage(incoming=True, from_users=(1588663614)))
+@bot.on(events.NewMessage(incoming=True, from_users=(1226408155)))
 async def hehehe(event):
     if event.fwd_from:
         return

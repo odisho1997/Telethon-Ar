@@ -47,14 +47,15 @@ async def _(event):
             event,
             f"{_format.mentionuser(user.first_name ,user.id)} `is not admin of this this {event.chat.title} chat`",
         )
-    output = f"**Admin rights of **{_format.mentionuser(user.first_name ,user.id)} **in {event.chat.title} chat are **\n"
-    output += f"__Change info :__ {c_info}\n"
-    output += f"__Delete messages :__ {del_me}\n"
-    output += f"__Ban users :__ {ban}\n"
-    output += f"__Invite users :__ {invite_u}\n"
-    output += f"__Pin messages :__ {pin}\n"
-    output += f"__Add admins :__ {add_a}\n"
-    output += f"__Manage call :__ {call}\n"
+    output = f"**حقوق المسؤول لـ **{_format.mentionuser(user.first_name ,user.id)} **فـي {event.chat.title} **\n"
+    output += f"تـغير المـعلومات : {c_info}\n"
+    output += f"حـذف الرسـائـل : {del_me}\n"
+    output += f"حـظر المـستخدمـين : {ban}\n"
+    output += f"تـغير الرابـط : {invite_u}\n"
+    output += f" تـثبيت رسـالة : {pin}\n"
+    output += f"اضـافة أدمـنية : {add_a}\n"
+    output += f" تحكـم بالاتصـالات : {call}\n"
+    output += f"`قنـاة تـليثون العـرب @IQTHON`\n"
     await edit_or_reply(event, output)
 
 
@@ -63,7 +64,7 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "**Admins in this Group**: \n"
+    mentions = "**المشرفون في هذه المجموعة 𖠕**: \n"
     reply_message = None
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
@@ -71,7 +72,7 @@ async def _(event):
     to_write_chat = await event.get_input_chat()
     chat = None
     if input_str:
-        mentions_heading = "Admins in {} Group: \n".format(input_str)
+        mentions_heading = "المشـرفون هـم {} فـي المجـموعة: \n".format(input_str)
         mentions = mentions_heading
         try:
             chat = await event.client.get_entity(input_str)
@@ -81,7 +82,7 @@ async def _(event):
     else:
         chat = to_write_chat
         if not event.is_group:
-            await edit_or_reply(event, "Are you sure this is a group?")
+            await edit_or_reply(event, "هل أنت متأكد من أن هذه مجموعة؟")
             return
     try:
         async for x in event.client.iter_participants(
@@ -116,14 +117,14 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "**Bots in this Group**: \n"
+    mentions = "**البـوتات في هذا المجـموعـة 𖠕**: \n"
     input_str = event.pattern_match.group(1)
     to_write_chat = await event.get_input_chat()
     chat = None
     if not input_str:
         chat = to_write_chat
     else:
-        mentions = "Bots in {} Group: \n".format(input_str)
+        mentions = "البـوتات فـي {} المجـموعة: \n".format(input_str)
         try:
             chat = await event.client.get_entity(input_str)
         except Exception as e:
@@ -151,7 +152,7 @@ async def _(event):
 async def get_users(show):
     if show.fwd_from:
         return
-    mentions = "**Users in this Group**: \n"
+    mentions = "**اليـوزرات في هذا المجـموعه 𖠕**: \n"
     reply_to_id = None
     if show.reply_to_msg_id:
         reply_to_id = show.reply_to_msg_id
@@ -159,16 +160,16 @@ async def get_users(show):
     await show.get_input_chat()
     if not input_str:
         if not show.is_group:
-            await edit_or_reply(show, "`Are you sure this is a group?`")
+            await edit_or_reply(show, "`هل أنت متأكد من أن هذه مجموعة؟`")
             return
     else:
-        mentions_heading = "Users in {} Group: \n".format(input_str)
+        mentions_heading = "اليـوزرات فـي {} المجـموعة: \n".format(input_str)
         mentions = mentions_heading
         try:
             chat = await show.client.get_entity(input_str)
         except Exception as e:
             await edit_delete(show, f"`{str(e)}`", 10)
-    catevent = await edit_or_reply(show, "`getting users list wait...`  ")
+    catevent = await edit_or_reply(show, "`جـاري جلب اليـوزرات المجمـوعة في مـلف 𖠕...`  ")
     try:
         if not show.pattern_match.group(1):
             async for user in show.client.iter_participants(show.chat_id):
@@ -207,7 +208,7 @@ async def get_users(show):
 @bot.on(admin_cmd(pattern="chatinfo(?: |$)(.*)", outgoing=True))
 @bot.on(sudo_cmd(pattern="chatinfo(?: |$)(.*)", allow_sudo=True))
 async def info(event):
-    catevent = await edit_or_reply(event, "`Analysing the chat...`")
+    catevent = await edit_or_reply(event, "`تحليل الدردشة 𖠕...`")
     chat = await get_chatinfo(event, catevent)
     caption = await fetch_info(chat, event)
     try:
@@ -215,9 +216,9 @@ async def info(event):
     except Exception as e:
         if BOTLOG:
             await event.client.send_message(
-                BOTLOG_CHATID, f"**Error in chatinfo : **\n`{str(e)}`"
+                BOTLOG_CHATID, f"**خطـأ في جلـب المعـلومات : **\n`{str(e)}`"
             )
-        await catevent.edit("`An unexpected error has occurred.`")
+        await catevent.edit("`لقد حدث خطأ غير متوقع.`")
 
 
 async def get_chatinfo(event, catevent):
@@ -241,15 +242,15 @@ async def get_chatinfo(event, catevent):
         try:
             chat_info = await event.client(GetFullChannelRequest(chat))
         except ChannelInvalidError:
-            await catevent.edit("`Invalid channel/group`")
+            await catevent.edit("`قناة / مجموعة غير صالحة 𖠕`")
             return None
         except ChannelPrivateError:
             await catevent.edit(
-                "`This is a private channel/group or I am banned from there`"
+                "`هذه قناة / مجموعة خاصة أو ممنوع من هناك`"
             )
             return None
         except ChannelPublicGroupNaError:
-            await catevent.edit("`Channel or supergroup doesn't exist`")
+            await catevent.edit("`القناة أو المجموعة الفائقة غير موجودة 𖠕`")
             return None
         except (TypeError, ValueError) as err:
             await catevent.edit(str(err))
@@ -402,25 +403,25 @@ async def fetch_info(chat, event):
         for _ in bots_list:
             bots += 1
 
-    caption = "<b>CHAT INFO:</b>\n"
-    caption += f"ID: <code>{chat_obj_info.id}</code>\n"
+    caption = "<b> معـلومات المحـادثة:</b>\n"
+    caption += f"ايدي المجمـوعة : <code>{chat_obj_info.id}</code>\n"
     if chat_title is not None:
         caption += f"{chat_type} name: {chat_title}\n"
     if former_title is not None:  # Meant is the very first title
         caption += f"Former name: {former_title}\n"
     if username is not None:
-        caption += f"{chat_type} type: Public\n"
-        caption += f"Link: {username}\n"
+        caption += f"{chat_type}  نـوع المجـموعة : Public\n"
+        caption += f"رابـط المجـموعة : {username}\n"
     else:
-        caption += f"{chat_type} type: Private\n"
+        caption += f"{chat_type} نـوع المجـموعة: Private\n"
     if creator_username is not None:
-        caption += f"Creator: {creator_username}\n"
+        caption += f"تـاريخ الأنشاء : {creator_username}\n"
     elif creator_valid:
         caption += (
-            f'Creator: <a href="tg://user?id={creator_id}">{creator_firstname}</a>\n'
+            f'المنـشـئ : <a href="tg://user?id={creator_id}">{creator_firstname}</a>\n'
         )
     if created is not None:
-        caption += f"Created: <code>{created.date().strftime('%b %d, %Y')} - {created.time()}</code>\n"
+        caption += f"الـتاريـخ : <code>{created.date().strftime('%b %d, %Y')} - {created.time()}</code>\n"
     else:
         caption += f"Created: <code>{chat_obj_info.date.date().strftime('%b %d, %Y')} - {chat_obj_info.date.time()}</code> {warn_emoji}\n"
     caption += f"Data Centre ID: {dc_id}\n"

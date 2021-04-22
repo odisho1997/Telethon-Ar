@@ -12,10 +12,10 @@ async def _(event):
     type_of_group = event.pattern_match.group(1)
     group_name = event.pattern_match.group(2)
     if type_of_group == "c":
-        descript = "This is a Test Channel created using catuserbot"
+        descript = "قنـاة اختبار"
     else:
         descript = "This is a Test Group created using catuserbot"
-    event = await edit_or_reply(event, "creating......")
+    event = await edit_or_reply(event, "جـاري الصنع 𖠕......")
     if type_of_group == "b":
         try:
             result = await event.client(
@@ -38,7 +38,7 @@ async def _(event):
                 )
             )
             await event.edit(
-                "Group `{}` created successfully. Join {}".format(
+                "المجـموعه `{}` تـم انشائها بنجاح. Join {}".format(
                     group_name, result.link
                 )
             )
@@ -61,14 +61,14 @@ async def _(event):
                 )
             )
             await event.edit(
-                "Channel `{}` created successfully. Join {}".format(
+                "القـناة `{}` تـم أنشـائها بنجـاح. Join {}".format(
                     group_name, result.link
                 )
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
     else:
-        await event.edit("Read `.info create` to know how to use me")
+        await event.edit("اقرأ ".info create" لمعرفة كيفية استخدامي 𖠕")
 
 
 CMD_HELP.update(

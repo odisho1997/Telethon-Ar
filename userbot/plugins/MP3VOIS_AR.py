@@ -1,4 +1,4 @@
-# by @mrconfused (@sandy1709)
+# by @klanr (@iqthon)
 
 import asyncio
 import base64
@@ -26,7 +26,7 @@ async def _(cat):
     reply_to_id = cat.message.id
     if cat.reply_to_msg_id:
         reply_to_id = cat.reply_to_msg_id
-    event = await edit_or_reply(cat, "Converting.....")
+    event = await edit_or_reply(cat, "جـاري تحـويل الملـصق الـى صورة 𖠕..")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
@@ -48,9 +48,9 @@ async def _(cat):
             os.remove(downloaded_file_name)
             await event.delete()
         else:
-            await event.edit("Can't Convert")
+            await event.edit("لايـمكننـي تـحويل")
     else:
-        await event.edit("Syntax : `.stoi` reply to a Telegram normal sticker")
+        await event.edit("لتـحويل الملـصق الى صورة قم بـرد على الملصـق بالأمر. `.stoi` 𖠕")
 
 
 @bot.on(admin_cmd(pattern="itos$"))
@@ -61,7 +61,7 @@ async def _(cat):
     reply_to_id = cat.message.id
     if cat.reply_to_msg_id:
         reply_to_id = cat.reply_to_msg_id
-    event = await edit_or_reply(cat, "Converting.....")
+    event = await edit_or_reply(cat, "جـاري تحـويل الملـصق الـى صـورة.. 𖠕")
     if not os.path.isdir(Config.TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(Config.TMP_DOWNLOAD_DIRECTORY)
     if event.reply_to_msg_id:
@@ -83,9 +83,9 @@ async def _(cat):
             os.remove(downloaded_file_name)
             await event.delete()
         else:
-            await event.edit("Can't Convert")
+            await event.edit("لايمكننـي التـحويل")
     else:
-        await event.edit("Syntax : `.itos` reply to a Telegram normal sticker")
+        await event.edit("لـتحويل الملـصق الـى صـورة قـم برد علـى الملـصق `.itos` 𖠕")
 
 
 async def silently_send_message(conv, text):
@@ -112,39 +112,6 @@ async def get(event):
     else:
         await edit_or_reply(event, "reply to text message as `.ttf <file name>`")
 
-
-@bot.on(admin_cmd(pattern="ftoi$"))
-@bot.on(sudo_cmd(pattern="ftoi$", allow_sudo=True))
-async def on_file_to_photo(event):
-    target = await event.get_reply_message()
-    catt = await edit_or_reply(event, "Converting.....")
-    try:
-        image = target.media.document
-    except AttributeError:
-        return
-    if not image.mime_type.startswith("image/"):
-        return  # This isn't an image
-    if image.mime_type == "image/webp":
-        return  # Telegram doesn't let you directly send stickers as photos
-    if image.size > 10 * 1024 * 1024:
-        return  # We'd get PhotoSaveFileInvalidError otherwise
-    file = await event.client.download_media(target, file=BytesIO())
-    file.seek(0)
-    img = await event.client.upload_file(file)
-    img.name = "image.png"
-    try:
-        await event.client(
-            SendMediaRequest(
-                peer=await event.get_input_chat(),
-                media=types.InputMediaUploadedPhoto(img),
-                message=target.message,
-                entities=target.entities,
-                reply_to_msg_id=target.id,
-            )
-        )
-    except PhotoInvalidDimensionsError:
-        return
-    await catt.delete()
 
 
 @bot.on(admin_cmd(pattern="gif(?: |$)(.*)"))
@@ -180,12 +147,12 @@ async def _(event):
     catreply = await event.get_reply_message()
     cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
     if not catreply or not catreply.media or not catreply.media.document:
-        return await edit_or_reply(event, "`Stupid!, This is not animated sticker.`")
+        return await edit_or_reply(event, "عـذرا أنـه ليـس ملصـق متحـرك.𖠕")
     if catreply.media.document.mime_type != "application/x-tgsticker":
-        return await edit_or_reply(event, "`Stupid!, This is not animated sticker.`")
+        return await edit_or_reply(event, "عـذرا أنـه ليـس ملصق مـتحرك 𖠕.")
     catevent = await edit_or_reply(
         event,
-        "Converting this Sticker to GiF...\n This may takes upto few mins..",
+        "جـاري تـحويل المـلصق المتـحرك الـى متـحركه كـاملة ...\n أنتـضر بعض الـدقائق 𖠕..",
         parse_mode=parse_pre,
     )
     try:
@@ -225,20 +192,20 @@ async def _(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await edit_or_reply(event, "```Reply to any media file.```")
+        await edit_or_reply(event, "`قـم بـرد علـى البـصمه فـضلا 𖠕`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await edit_or_reply(event, "reply to media file")
+        await edit_or_reply(event, "قـم برد على البـصمة فضـلا")
         return
     input_str = event.pattern_match.group(1)
     if input_str is None:
-        await edit_or_reply(event, "try `.nfc voice` or`.nfc mp3`")
+        await edit_or_reply(event, "حـاول `.nfc voice` or`.nfc mp3`")
         return
     if input_str in ["mp3", "voice"]:
-        event = await edit_or_reply(event, "converting...")
+        event = await edit_or_reply(event, "جـاري التـحويل 𖠕...")
     else:
-        await edit_or_reply(event, "try `.nfc voice` or`.nfc mp3`")
+        await edit_or_reply(event, "حـاول `.nfc voice` or`.nfc mp3`")
         return
     try:
         start = datetime.now()
@@ -256,7 +223,7 @@ async def _(event):
         end = datetime.now()
         ms = (end - start).seconds
         await event.edit(
-            "Downloaded to `{}` in {} seconds.".format(downloaded_file_name, ms)
+            "تـم التـنزيل الـى `{}` فـي {} ثـواني 𖠕.".format(downloaded_file_name, ms)
         )
         new_required_file_name = ""
         new_required_file_caption = ""

@@ -45,17 +45,6 @@ async def gn(event):
 # @PhycoNinja13b 's Part begin from here
 
 
-@bot.on(admin_cmd(pattern=r"hi ?(.*)"))
-@bot.on(sudo_cmd(pattern=r"hi ?(.*)", allow_sudo=True))
-async def hi(event):
-    giveVar = event.text
-    cat = giveVar[4:5]
-    if not cat:
-        cat = "🌺"
-    await edit_or_reply(
-        event,
-        f"{cat}✨✨{cat}✨{cat}{cat}{cat}\n{cat}✨✨{cat}✨✨{cat}✨\n{cat}{cat}{cat}{cat}✨✨{cat}✨\n{cat}✨✨{cat}✨✨{cat}✨\n{cat}✨✨{cat}✨{cat}{cat}{cat}\n☁☁☁☁☁☁☁☁",
-    )
 
 
 @bot.on(admin_cmd(pattern=r"cheer$"))

@@ -21,7 +21,7 @@ async def _(event):
     elif ";" in input_str:
         lan, text = input_str.split(";")
     else:
-        await edit_delete(event, "`.tl LanguageCode` as reply to a message", time=5)
+        await edit_delete(event, "يرجـى الـرد على الـرسالة للترجمة", time=5)
         return
     text = deEmojify(text.strip())
     lan = lan.strip()
@@ -29,43 +29,12 @@ async def _(event):
     try:
         translated = await getTranslate(text, dest=lan)
         after_tr_text = translated.text
-        output_str = f"**TRANSLATED from {LANGUAGES[translated.src].title()} to {LANGUAGES[lan].title()}**\
+        output_str = f"**الـترجمـة لـ {LANGUAGES[translated.src].title()} ألـى {LANGUAGES[lan].title()}**\
                 \n`{after_tr_text}`"
         await edit_or_reply(event, output_str)
     except Exception as exc:
         await edit_delete(event, str(exc), time=5)
 
-
-@bot.on(admin_cmd(outgoing=True, pattern=r"trt(?: |$)([\s\S]*)"))
-@bot.on(sudo_cmd(allow_sudo=True, pattern=r"trt(?: |$)([\s\S]*)"))
-async def translateme(trans):
-    if trans.fwd_from:
-        return
-    textx = await trans.get_reply_message()
-    message = trans.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await edit_or_reply(trans, "`Give a text or reply to a message to translate!`")
-        return
-    TRT_LANG = gvarstatus("TRT_LANG") or "en"
-    try:
-        reply_text = await getTranslate(deEmojify(message), dest=TRT_LANG)
-    except ValueError:
-        await edit_delete(trans, "`Invalid destination language.`", time=5)
-        return
-    source_lan = LANGUAGES[f"{reply_text.src.lower()}"]
-    transl_lan = LANGUAGES[f"{reply_text.dest.lower()}"]
-    reply_text = f"**From {source_lan.title()}({reply_text.src.lower()}) to {transl_lan.title()}({reply_text.dest.lower()}) :**\n`{reply_text.text}`"
-
-    await edit_or_reply(trans, reply_text)
-    if BOTLOG:
-        await trans.client.send_message(
-            BOTLOG_CHATID,
-            f"`Translated some {source_lan.title()} stuff to {transl_lan.title()} just now.`",
-        )
 
 
 @bot.on(admin_cmd(pattern="lang trt (.*)", outgoing=True))

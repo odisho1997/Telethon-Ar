@@ -1,50 +1,6 @@
 import asyncio
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="^\:/$"))
-@bot.on(sudo_cmd(pattern="^\:/$", allow_sudo=True))
-async def kek(keks):
-    keks = await edit_or_reply(keks, ":\\")
-    uio = ["/", "\\"]
-    for i in range(15):
-        await asyncio.sleep(0.5)
-        txt = ":" + uio[i % 2]
-        await keks.edit(txt)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="^\-_-$"))
-@bot.on(sudo_cmd(pattern="^\-_-$", allow_sudo=True))
-async def lol(lel):
-    lel = await edit_or_reply(lel, "-__-")
-    okay = "-__-"
-    for _ in range(15):
-        await asyncio.sleep(0.5)
-        okay = okay[:-1] + "_-"
-        await lel.edit(okay)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="^\;_;$"))
-@bot.on(sudo_cmd(pattern="^\;_;$", allow_sudo=True))
-async def fun(e):
-    e = await edit_or_reply(e, ";__;")
-    t = ";__;"
-    for _ in range(15):
-        await asyncio.sleep(0.5)
-        t = t[:-1] + "_;"
-        await e.edit(t)
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="oof$"))
-@bot.on(sudo_cmd(pattern="oof$", allow_sudo=True))
-async def Oof(e):
-    t = "Oof"
-    catevent = await edit_or_reply(e, t)
-    for _ in range(15):
-        await asyncio.sleep(0.5)
-        t = t[:-1] + "of"
-        await catevent.edit(t)
-
-
 @bot.on(admin_cmd(outgoing=True, pattern="type (.*)"))
 @bot.on(sudo_cmd(pattern="type (.*)", allow_sudo=True))
 async def typewriter(typew):
@@ -76,14 +32,14 @@ async def _(event):
     await event.delete()
 
 
-@bot.on(admin_cmd(pattern=f"meme", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"meme", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"kno", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"kno", allow_sudo=True))
 async def meme(event):
     memeVar = event.text
     sleepValue = 0.5
     memeVar = memeVar[6:]
     if not memeVar:
-        memeVar = "✈️"
+        memeVar = "🖕"
     event = await edit_or_reply(event, "-------------" + memeVar)
     await asyncio.sleep(sleepValue)
     await event.edit("------------" + memeVar + "-")
@@ -143,8 +99,8 @@ async def meme(event):
     await event.edit(memeVar)
 
 
-@bot.on(admin_cmd(pattern=f"give", outgoing=True))
-@bot.on(sudo_cmd(pattern=f"give", allow_sudo=True))
+@bot.on(admin_cmd(pattern=f"iq", outgoing=True))
+@bot.on(sudo_cmd(pattern=f"iq", allow_sudo=True))
 async def give(event):
     if event.fwd_from:
         return
@@ -152,7 +108,7 @@ async def give(event):
     sleepValue = 0.5
     lp = giveVar[6:]
     if not lp:
-        lp = " 🍭"
+        lp = "🖕"
     event = await edit_or_reply(event, lp + "        ")
     await asyncio.sleep(sleepValue)
     await event.edit(lp + lp + "       ")

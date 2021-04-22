@@ -46,7 +46,7 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "`😲💨  🔥\n/|\     🔥🔥\n/ \   🔥🔥🔥`"
+    mentions = "`😲💨  🔥\n/|\     🔥🔥\n/ \   🔥🔥🔥` /n @IQTHON"
     chat = await event.get_input_chat()
     async for _ in event.client.iter_participants(
         chat, filter=ChannelParticipantsAdmins
@@ -101,7 +101,7 @@ async def _(event):
     await event.delete()
 
 
-# by  @Halto_Tha
+# by  @klanr
 @bot.on(admin_cmd(pattern=r"lmoon$"))
 @bot.on(sudo_cmd(pattern="lmoon$", allow_sudo=True))
 async def test(event):

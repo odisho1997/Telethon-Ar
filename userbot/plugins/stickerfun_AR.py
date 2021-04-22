@@ -1,7 +1,4 @@
-# Random RGB Sticklet by @PhycoNinja13b
-# modified by @UniBorg
-# imported from ppe-remix by @heyworld & @DeletedUser420
-# modified by @mrconfused
+# modified by @iqthon
 
 import io
 import os
@@ -13,7 +10,7 @@ from telethon.tl.types import InputMessagesFilterDocument
 
 from . import deEmojify, waifutxt
 
-# RegEx by https://t.me/c/1220993104/500653 ( @SnapDragon7410 )
+# klanr ( @iqthon )
 
 
 @bot.on(admin_cmd(outgoing=True, pattern="sttxt(?: |$)(.*)"))
@@ -28,10 +25,10 @@ async def waifu(animu):
             text = (await animu.get_reply_message()).message
         else:
             await edit_or_reply(
-                animu, "`You haven't written any article, Waifu is going away.`"
+                animu, "`أنت لم تكتب أي مقال ، وايفو سوف يغادر.`"
             )
             return
-    text = deEmojify(text)
+    text = deEmojify(text);
     await animu.delete()
     await waifutxt(text, animu.chat_id, reply_to_id, bot, animu.client)
 
@@ -57,7 +54,7 @@ async def sticklet(event):
             reply_message = await event.get_reply_message()
             sticktext = reply_message.message
         else:
-            await edit_or_reply(event, "need something, hmm")
+            await edit_or_reply(event, "قـم بكتـابة الاسم او الجمـلة جنـب الامـر 𖠕")
             return
     if event.reply_to_msg_id:
         reply_message = await event.get_reply_message()
@@ -82,7 +79,7 @@ async def sticklet(event):
         ((512 - width) / 2, (512 - height) / 2), sticktext, font=font, fill=(R, G, B)
     )
     image_stream = io.BytesIO()
-    image_stream.name = "@catuserbot17.webp"
+    image_stream.name = "@iqthon.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
     # finally, reply the sticker

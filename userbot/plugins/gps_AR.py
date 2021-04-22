@@ -1,18 +1,3 @@
-"""Syntax : .gps <location name>
-  help from @sunda005 and @SpEcHIDe
-  credits :@mrconfused
-  don't edit credits"""
-#    Copyright (C) 2020  sandeep.n(π.$)
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#   You should have received a copy of the GNU Affero General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from geopy.geocoders import Nominatim
 from telethon.tl import types
 
@@ -30,9 +15,9 @@ async def gps(event):
     input_str = event.pattern_match.group(1)
 
     if not input_str:
-        return await event.edit("what should i find give me location.")
+        return await event.edit("ماذا يجب أن أجد أعطني الموقع. 𖠕")
 
-    await event.edit("finding")
+    await event.edit("تـم العـثور عـلى")
 
     geolocator = Nominatim(user_agent="catuserbot")
     geoloc = geolocator.geocode(input_str)
@@ -45,7 +30,7 @@ async def gps(event):
         )
         await event.delete()
     else:
-        await event.edit("i coudn't find it")
+        await event.edit("عـذرا لـم أجـد المـكان المـحدد 𖠕")
 
 
 @bot.on(sudo_cmd(pattern="gps ?(.*)", allow_sudo=True))
@@ -58,9 +43,9 @@ async def gps(event):
     input_str = event.pattern_match.group(1)
 
     if not input_str:
-        return await event.reply("what should I find give me location.")
+        return await event.reply("ماذا يجب أن أجد أعطني الموقع. 𖠕")
 
-    cat = await event.reply("finding")
+    cat = await event.reply("تـم العـثور عـلى 𖠕")
 
     geolocator = Nominatim(user_agent="catuserbot")
     geoloc = geolocator.geocode(input_str)
@@ -73,7 +58,7 @@ async def gps(event):
         )
         await cat.delete()
     else:
-        await cat.edit("i coudn't find it")
+        await cat.edit("عـذرا لـم أجـد 𖠕")
 
 
 CMD_HELP.update(

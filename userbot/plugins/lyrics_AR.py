@@ -1,4 +1,4 @@
-# credits to @mrconfused (@sandy1709)
+
 import io
 import os
 

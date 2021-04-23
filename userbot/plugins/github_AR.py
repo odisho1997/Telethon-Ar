@@ -32,12 +32,12 @@ async def _(event):
         await event.client.send_file(
             event.chat_id,
             caption="""**Name : **[{}]({})
-**Type :** {}
-**Company :** {}
-**Blog :** {}
-**Location :** {}
-**Bio :** {}
-**Profile Created :** {}""".format(
+**يكتب :** {}
+**شركة :** {}
+**المدونة :** {}
+**الموقع :** {}
+**الوصـف :** {}
+**تـاريخ الانـشاء :** {}""".format(
                 name, html_url, gh_type, company, blog, location, bio, created_at
             ),
             file=avatar_url,

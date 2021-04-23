@@ -27,7 +27,7 @@ async def _(event):
     except Exception as e:
         await event.edit(str(e))
     else:
-        await event.edit("Transferred 🌚")
+        await event.edit("الـمحـول 𖠕")
 
 
 CMD_HELP.update(

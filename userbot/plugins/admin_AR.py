@@ -222,11 +222,11 @@ async def ban(bon):
         return
     if reason:
         await catevent.edit(
-            f"{_format.mentionuser(user.first_name ,user.id)}` أنة محظور الان : !!`\n**السبب : : **`{reason}`"
+            f"{_format.mentionuser(user.first_name ,user.id)}` لقـد تـم حظـرة من المـجموعة : !!`\n**السبب : : **`{reason}`"
         )
     else:
         await catevent.edit(
-            f"{_format.mentionuser(user.first_name ,user.id)} `أنة محظور الان !!`"
+            f"{_format.mentionuser(user.first_name ,user.id)} `لقـد تـم حظـرة من المـجموعة !!`"
         )
     if BOTLOG:
         await bon.client.send_message(
@@ -363,13 +363,13 @@ async def startmute(event):
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `انـة مكـتوم فـي : {event.chat.title}`\n"
+                f"{_format.mentionuser(user.first_name ,user.id)} `الان مكـتوم فـي : {event.chat.title}`\n"
                 f"`السـبب:`{reason}",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `انـة مكـتوم فـي {event.chat.title}`\n",
+                f"{_format.mentionuser(user.first_name ,user.id)} `الان مكـتوم فـي {event.chat.title}`\n",
             )
         if BOTLOG:
             await event.client.send_message(

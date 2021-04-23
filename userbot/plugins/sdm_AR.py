@@ -23,7 +23,7 @@ async def selfdestruct(destroy):
     message = cat[1]
     ttl = int(cat[0])
     text = (
-        message + f"\n\n`This message shall be self-destructed in {str(ttl)} seconds`"
+        message + f"\n\n`يجب أن تكون هذه الرسالة ذاتية التدمير في {str(ttl)} ثـواني`"
     )
     try:
         await destroy.delete()

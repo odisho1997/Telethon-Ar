@@ -6,7 +6,7 @@ from telethon import version
 from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, reply_id
 
 DEFAULTUSER = ALIVE_NAME or "I𝐐𝐓𝐇𝐎𝐍⁦♡⁩"
-CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
+CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/a8d253cce2e3f7770e492.jpg"
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ 𝗪َ𝗘𝗟َِ𝗖𝗢𝗠َِ𝙀َِ 𝗧𝗢 𝗧𝗘𝗟𝗘𝗧𝗛𝗢𝗡 𝗔َِ𝗥َِ𝗔𝗕َِ𝗦 ⇜"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
@@ -23,7 +23,7 @@ async def amireallyalive(alive):
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات 『** `{check_sgnirts}`』\n"
         cat_caption += f"**{EMOJI} اصدار التليثون  『** `{version.__version__}』\n`"
-        cat_caption += f"**{EMOJI} اصدار تليثون العرب 『** `{catversion}`』\n"
+        cat_caption += f"**{EMOJI} اصدار تليثون العرب 『** `1.0.0`』\n"
         cat_caption += f"**{EMOJI} اصدار البايثون 『** `{python_version()}』\n`"
         cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
         cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"

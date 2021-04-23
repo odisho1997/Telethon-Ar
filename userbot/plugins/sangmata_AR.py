@@ -15,7 +15,7 @@ async def _(event):
     if not input_str and not reply_message:
         await edit_delete(
             event,
-            "`reply to  user's text message to get name/username history or give userid/username`",
+            "`الرد على الرسالة النصية للمستخدم للحصول على سجل الاسم / اسم المستخدم أو إعطاء معرف المستخدم / اسم المستخدم`",
         )
     if input_str:
         try:
@@ -25,13 +25,13 @@ async def _(event):
                 u = await event.client.get_entity(input_str)
             except ValueError:
                 await edit_delete(
-                    event, "`Give userid or username to find name history`"
+                    event, "`أعط معرف المستخدم أو اسم المستخدم للعثور على سجل الاسم`"
                 )
             uid = u.id
     else:
         uid = reply_message.sender_id
     chat = "@SangMataInfo_bot"
-    catevent = await edit_or_reply(event, "`Processing...`")
+    catevent = await edit_or_reply(event, "`جـاري البـحث 𖠕...`")
     async with event.client.conversation(chat) as conv:
         try:
             await conv.send_message(f"/search_id {uid}")
@@ -46,9 +46,9 @@ async def _(event):
             responses.append(response.text)
         await event.client.send_read_acknowledge(conv.chat_id)
     if not responses:
-        await edit_delete(catevent, "`bot can't fetch results`")
+        await edit_delete(catevent, "`لا يستطيع الروبوت جلب النتائج`")
     if "No records found" in responses:
-        await edit_delete(catevent, "`The user doesn't have any record`")
+        await edit_delete(catevent, "`المستخدم ليس لديه أي سجل`")
     names, usernames = await sanga_seperator(responses)
     cmd = event.pattern_match.group(1)
     if cmd == "sg":

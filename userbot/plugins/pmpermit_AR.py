@@ -21,7 +21,7 @@ PREV_REPLY_MESSAGE = {}
 CACHE = {}
 PMPERMIT_PIC = Config.PMPERMIT_PIC
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USER_BOT_WARN_ZERO = "𝆹𝅥𝅮 لقد حذرتك من تكرار الرسائل . الآن تم حظرك والإبلاغ عنك حتى إشعار آخر.\n**- #ججـاو 🚶🏼‍♂️❕،** "
+USER_BOT_WARN_ZERO = "𝆹𝅥𝅮 لقد حذرتك من تكرار الرسائل . الآن تم حظرك والإبلاغ عنك حتى إشعار آخر.\n**- #مـع سـلامة 𖠕،** "
 
 
 if Config.PRIVATE_GROUP_ID is not None:
@@ -296,8 +296,8 @@ async def hehehe(event):
     chat = await event.get_chat()
     if event.is_private:
         if not pmpermit_sql.is_approved(chat.id):
-            pmpermit_sql.approve(chat.id, "**مطوري هنا**")
-            await borg.send_message(chat, "**𝆹𝅥𝅮 انه مطوري انت محظوظ لقدومه اليك 𖠕**")
+            pmpermit_sql.approve(chat.id, "**مطـور الـسورس هـنا**")
+            await borg.send_message(chat, "** أنـة مطـور الـسورس الخـاص بـك 𖠕**")
 
 
 CMD_HELP.update(

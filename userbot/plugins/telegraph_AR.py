@@ -20,13 +20,13 @@ auth_url = r["auth_url"]
 async def _(event):
     if event.fwd_from:
         return
-    catevent = await edit_or_reply(event, "`processing........`")
+    catevent = await edit_or_reply(event, "`جـاري الـتحويـل ...𖠕`")
     if not os.path.isdir(Config.TEMP_DIR):
         os.makedirs(Config.TEMP_DIR)
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "Created New Telegraph account {} for the current session. \n**Do not give this url to anyone, even if they say they are from Telegram!**".format(
+            "تـم صنع تليجراف الخـاص بك {} للـرابط الحـالي.".format(
                 auth_url
             ),
         )
@@ -42,7 +42,7 @@ async def _(event):
             end = datetime.now()
             ms = (end - start).seconds
             await catevent.edit(
-                f"`Downloaded to {downloaded_file_name} in {ms} seconds.`"
+                f"`تم التنزيل إلى {downloaded_file_name} فـي {ms} ثـواني.`"
             )
             if downloaded_file_name.endswith((".webp")):
                 resize_image(downloaded_file_name)
@@ -58,7 +58,7 @@ async def _(event):
                 os.remove(downloaded_file_name)
                 await catevent.edit(
                     "**link : **[telegraph](https://telegra.ph{})\
-                    \n**Time Taken : **`{} seconds.`".format(
+                    \n**الوقت المستغرق : **`{} ثـانية.`".format(
                         media_urls[0], (ms + ms_two)
                     ),
                     link_preview=True,
@@ -89,7 +89,7 @@ async def _(event):
             cat = f"https://telegra.ph/{response['path']}"
             await catevent.edit(
                 f"**link : ** [telegraph]({cat})\
-                 \n**Time Taken : **`{ms} seconds.`",
+                 \n**الوقت المستغرق : **`{ms} ثـانية.`",
                 link_preview=True,
             )
     else:

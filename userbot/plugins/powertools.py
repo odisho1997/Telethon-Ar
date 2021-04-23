@@ -14,7 +14,7 @@ async def _(event):
         await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
     await edit_or_reply(
         event,
-        "Restarted. `.ping` me or `.help` to check if I am online, actually it takes 1-2 min for restarting",
+        "جـاري أعـادة التشـغيل 🔄",
     )
     await bot.disconnect()
     execl(sys.executable, sys.executable, *sys.argv)
@@ -27,7 +27,7 @@ async def _(event):
         return
     if BOTLOG:
         await event.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
-    await edit_or_reply(event, "`Turning off bot now ...Manually turn me on later`")
+    await edit_or_reply(event, "`تـم أطفـاء تـليثون 🚫`")
     if HEROKU_APP is not None:
         HEROKU_APP.process_formation()["worker"].scale(0)
     else:
@@ -45,11 +45,11 @@ async def _(event):
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "You put the bot to sleep for " + str(counter) + " seconds",
+            "لقد وضعت الروبوت في وضع السكون لأجل " + str(counter) + " ثـواني",
         )
-    event = await edit_or_reply(event, f"`ok, let me sleep for {counter} seconds`")
+    event = await edit_or_reply(event, f"`تـم الايقاف المـوقت {counter} ثـواني`")
     sleep(counter)
-    await event.edit("`OK, I'm awake now.`")
+    await event.edit("حسـنا الان تـم تشـغيلي 𖠕")
 
 
 CMD_HELP.update(

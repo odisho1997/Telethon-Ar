@@ -1,4 +1,4 @@
-# Userbot timezone
+# Telethon-Arab timezone
 
 import os
 from datetime import datetime as dt

@@ -1,4 +1,4 @@
-"""command: .kk By @Grandpaa_please """
+"""command: .telethon By @iqthon """
 
 
 import random
@@ -11,10 +11,10 @@ async def _(event):
     if event.fwd_from:
         return
     input_str = event.pattern_match.group(1)
-    if input_str == "kk":
+    if input_str == "telethon":
         r = random.randint(0, 3)
         logger.debug(r)
         if r == 0:
-            await event.edit("┏━━━┓\n┃┏━━┛\n┃┗━━┓\n┃┏━━┛\n┃┃\n┗┛")
+            await event.edit("@IQTHON \n @YZZZY \n @KLANR")
         else:
-            await event.edit("╭━━━╮\n┃╭━━╯\n┃╰━━╮\n┃╭━━╯\n┃┃\n╰╯")
+            await event.edit("@IQTHON \n @YZZZY \n @KLANR")

@@ -32,104 +32,9 @@ BANNED_RIGHTS = ChatBannedRights(
 
 @bot.on(admin_cmd(outgoing=True, pattern="kickme$"))
 async def kickme(leave):
-    await leave.edit("Nope, no, no, I go away")
+    await leave.edit("جـاري الخـروج من المجـموعة 𖠕")
     await leave.client.kick_participant(leave.chat_id, "me")
 
-
-@bot.on(admin_cmd(pattern="kickall ?(.*)"))
-@bot.on(sudo_cmd(pattern="kickall ?(.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    if not event.is_group:
-        await edit_or_reply(event, "`I don't think this is a group.`")
-        return
-    chat = await event.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-    if not admin and not creator:
-        await edit_or_reply(
-            event, "`You are not admin of this chat to perform this action`"
-        )
-        return
-    result = await event.client(
-        functions.channels.GetParticipantRequest(
-            channel=event.chat_id, user_id=event.client.uid
-        )
-    )
-    if not result.participant.admin_rights.ban_users:
-        return await edit_or_reply(
-            event, "`It seems like you dont have ban users permission in this group.`"
-        )
-    catevent = await edit_or_reply(event, "`Kicking...`")
-    admins = await event.client.get_participants(
-        event.chat_id, filter=ChannelParticipantsAdmins
-    )
-    admins_id = [i.id for i in admins]
-    total = 0
-    success = 0
-    async for user in event.client.iter_participants(event.chat_id):
-        total += 1
-        try:
-            if user.id not in admins_id:
-                await event.client.kick_participant(event.chat_id, user.id)
-                success += 1
-                await sleep(0.5)
-        except Exception as e:
-            LOGS.info(str(e))
-            await sleep(0.5)
-    await catevent.edit(
-        f"`Sucessfully i have completed kickall process with {success} members kicked out of {total} members`"
-    )
-
-
-@bot.on(admin_cmd(pattern="banall ?(.*)"))
-@bot.on(sudo_cmd(pattern="banall ?(.*)", allow_sudo=True))
-async def _(event):
-    if event.fwd_from:
-        return
-    if not event.is_group:
-        await edit_or_reply(event, "`I don't think this is a group.`")
-        return
-    chat = await event.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-    if not admin and not creator:
-        await edit_or_reply(
-            event, "`You are not admin of this chat to perform this action`"
-        )
-        return
-    result = await event.client(
-        functions.channels.GetParticipantRequest(
-            channel=event.chat_id, user_id=event.client.uid
-        )
-    )
-    if not result:
-        return await edit_or_reply(
-            event, "`It seems like you dont have ban users permission in this group.`"
-        )
-    catevent = await edit_or_reply(event, "`banning...`")
-    admins = await event.client.get_participants(
-        event.chat_id, filter=ChannelParticipantsAdmins
-    )
-    admins_id = [i.id for i in admins]
-    total = 0
-    success = 0
-    async for user in event.client.iter_participants(event.chat_id):
-        total += 1
-        try:
-            if user.id not in admins_id:
-                await event.client(
-                    EditBannedRequest(event.chat_id, user.id, BANNED_RIGHTS)
-                )
-                success += 1
-                await sleep(0.5)
-        except Exception as e:
-            LOGS.info(str(e))
-            await sleep(0.5)
-    await catevent.edit(
-        f"`Sucessfully i have completed banall process with {success} members banned out of {total} members`"
-    )
 
 
 @bot.on(admin_cmd(pattern="unbanall ?(.*)"))
@@ -143,7 +48,7 @@ async def _(event):
     else:
         if event.is_private:
             return False
-        et = await edit_or_reply(event, "Searching Participant Lists.")
+        et = await edit_or_reply(event, "جـاري مسـح المحظـورين 𖠕.")
         p = 0
         async for i in event.client.iter_participants(
             event.chat_id, filter=ChannelParticipantsKicked, aggressive=True
@@ -157,7 +62,7 @@ async def _(event):
                 await et.edit(str(ex))
             else:
                 p += 1
-        await et.edit("{}: {} unbanned".format(event.chat_id, p))
+        await et.edit("{}: {} مسـح المحـظورين".format(event.chat_id, p))
 
 
 @bot.on(admin_cmd(pattern="ikuck ?(.*)", outgoing=True))
@@ -275,28 +180,28 @@ async def _(event):
             n += 1
     if input_str:
         required_string = """Kicked {} / {} users
-Deleted Accounts: {}
-UserStatusEmpty: {}
-UserStatusLastMonth: {}
-UserStatusLastWeek: {}
-UserStatusOffline: {}
-UserStatusOnline: {}
-UserStatusRecently: {}
-Bots: {}
-None: {}"""
+الحسابات المحذوفة : {}
+حالة المستخدم فارغة : {}
+النشطـون منذ شـهر : {}
+النشـطون منذ أسبوع : {}
+الغـير نشـط : {}
+النـشطون الان : {}
+النشـطون قبـل قليـل : {}
+البـوتات : {}
+مـلاحظة : {}"""
         await et.edit(required_string.format(c, p, d, y, m, w, o, q, r, b, n))
         await sleep(5)
     await et.edit(
         """Total: {} users
-Deleted Accounts: {}
-UserStatusEmpty: {}
-UserStatusLastMonth: {}
-UserStatusLastWeek: {}
-UserStatusOffline: {}
-UserStatusOnline: {}
-UserStatusRecently: {}
-Bots: {}
-None: {}""".format(
+الحسابات المحذوفة: {}
+حالة المستخدم فارغة : {}
+الحسابات النشطـون منذ شـهر : {}
+النشطـون منذ أسبوع : {}
+الـغير نشـطون : {}
+النـشطون الان: {}
+النشطـون قبـل قليـل: {}
+البـوتات : {}
+مـلاحظة : {}""".format(
             p, d, y, m, w, o, q, r, b, n
         )
     )
@@ -308,25 +213,25 @@ None: {}""".format(
 async def rm_deletedacc(show):
     con = show.pattern_match.group(1).lower()
     del_u = 0
-    del_status = "`No zombies or deleted accounts found in this group, Group is clean`"
+    del_status = "`لـم يتـم العـثور علـى حسـابات محـذوفـة 𖠕`"
     if con != "clean":
         event = await edit_or_reply(
-            show, "`Searching for ghost/deleted/zombie accounts...`"
+            show, "جـاري البـحث عـن الحسـابات المـحذوفه 𖠕...`"
         )
         async for user in show.client.iter_participants(show.chat_id):
             if user.deleted:
                 del_u += 1
                 await sleep(0.5)
         if del_u > 0:
-            del_status = f"__Found__ **{del_u}** __ghost/deleted/zombie account(s) in this group,\
-                           \nclean them by using__ `.zombies clean`"
+            del_status = f"__لـقد وجـدت__ **{del_u}** __مـجموع الحـسابات المحـذوفه ,\
+                           \nلـتنضيف الحسابات المـحذوفة أرسـل أمر __ `.zombies clean`"
         await event.edit(del_status)
         return
     chat = await show.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     if not admin and not creator:
-        await edit_delete(show, "`I am not an admin here!`", 5)
+        await edit_delete(show, "انـا لـست أدمـن هنـا !`", 5)
         return
     event = await edit_or_reply(
         show, "`Deleting deleted accounts...\nOh I can do that?!?!`"
@@ -372,9 +277,9 @@ CMD_HELP.update(
         "groupactions": "**Plugin : **`groupactions`\
     \n\n•  **Syntax : **`.kickme`\
     \n•  **Function : **__Throws you away from that chat_\
-    \n\n•  **Syntax : **`.kickall`\
+    \n\n•  **Syntax : **``\
     \n•  **Function : **__To kick all users except admins from the chat__\
-    \n\n•  **Syntax : **`.banall`\
+    \n\n•  **Syntax : **``\
     \n•  **Function : **__To ban all users except admins from the chat__\
     \n\n•  **Syntax : **`.unbanall`\
     \n•  **Function : **__Unbans everyone who are blocked in that group __\

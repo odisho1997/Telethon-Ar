@@ -35,8 +35,8 @@ async def filter_incoming_handler(handler):
         pass
 
 
-@bot.on(admin_cmd(pattern="filter (.*)"))
-@bot.on(sudo_cmd(pattern="filter (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="safi (.*)"))
+@bot.on(sudo_cmd(pattern="safi (.*)", allow_sudo=True))
 async def add_new_filter(new_handler):
     if new_handler.fwd_from:
         return
@@ -78,8 +78,8 @@ async def add_new_filter(new_handler):
     await edit_or_reply(new_handler, f"𖠕 خطـأ اثنـاء تعيـن الـرد {keyword}")
 
 
-@bot.on(admin_cmd(pattern="filters$"))
-@bot.on(sudo_cmd(pattern="filters$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="safis$"))
+@bot.on(sudo_cmd(pattern="safis$", allow_sudo=True))
 async def on_snip_list(event):
     if event.fwd_from:
         return
@@ -97,8 +97,8 @@ async def on_snip_list(event):
     )
 
 
-@bot.on(admin_cmd(pattern="stop (.*)"))
-@bot.on(sudo_cmd(pattern="stop (.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="rmsafi (.*)"))
+@bot.on(sudo_cmd(pattern="rmsafi (.*)", allow_sudo=True))
 async def remove_a_filter(r_handler):
     if r_handler.fwd_from:
         return
@@ -109,8 +109,8 @@ async def remove_a_filter(r_handler):
         await r_handler.edit("الـرد `{} `تـم حـذفة بنـجـاح 𖠕".format(filt))
 
 
-@bot.on(admin_cmd(pattern="rmfilters$"))
-@bot.on(sudo_cmd(pattern="rmfilters$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="rmsafis$"))
+@bot.on(sudo_cmd(pattern="rmsafis$", allow_sudo=True))
 async def on_all_snip_delete(event):
     if event.fwd_from:
         return
@@ -125,14 +125,14 @@ async def on_all_snip_delete(event):
 CMD_HELP.update(
     {
         "الردود": "**Plugin :**`الردود`\
-    \n\n•  **Syntax :** `.filters`\
+    \n\n•  **Syntax :** `.safi`\
     \n•  **Function : **Lists all active (of your userbot) filters in a chat.\
-    \n\n•  **Syntax :** `.filter`  reply to a message with .filter <keyword>\
+    \n\n•  **Syntax :** `.safis`  reply to a message with .filter <keyword>\
     \n•  **Function : **Saves the replied message as a reply to the 'keyword'.\
     \nThe bot will reply to the message whenever 'keyword' is mentioned. Works with everything from files to stickers.\
-    \n\n•  **Syntax :** `.stop <keyword>`\
+    \n\n•  **Syntax :** `.rmsafi <keyword>`\
     \n•  **Function : **Stops the specified keyword.\
-    \n\n•  **Syntax :** `.rmfilters` \
+    \n\n•  **Syntax :** `.rmsafis` \
     \n•  **Function : **Removes all filters of your userbot in the chat."
     }
 )

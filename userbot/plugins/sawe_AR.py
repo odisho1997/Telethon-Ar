@@ -77,8 +77,8 @@ async def _(event):
         update_previous_welcome(event.chat_id, current_message.id)
 
 
-@bot.on(admin_cmd(pattern=r"savewelcome ?(.*)"))
-@bot.on(sudo_cmd(pattern=r"savewelcome ?(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern=r"sawe ?(.*)"))
+@bot.on(sudo_cmd(pattern=r"sawe ?(.*)", allow_sudo=True))
 async def save_welcome(event):
     if event.fwd_from:
         return
@@ -115,8 +115,8 @@ async def save_welcome(event):
     await edit_or_reply("Error while setting welcome in this group")
 
 
-@bot.on(admin_cmd(pattern="clearwelcome$"))
-@bot.on(sudo_cmd(pattern="clearwelcome$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="clwe$"))
+@bot.on(sudo_cmd(pattern="clwe$", allow_sudo=True))
 async def del_welcome(event):
     if event.fwd_from:
         return
@@ -126,8 +126,8 @@ async def del_welcome(event):
         await edit_or_reply(event, "𖠕  لايـوجد لديـك هـنا تـرحيب ↫")
 
 
-@bot.on(admin_cmd(pattern="listwelcome$"))
-@bot.on(sudo_cmd(pattern="listwelcome$", allow_sudo=True))
+@bot.on(admin_cmd(pattern="listsawe$"))
+@bot.on(sudo_cmd(pattern="listsawe$", allow_sudo=True))
 async def show_welcome(event):
     if event.fwd_from:
         return
@@ -151,13 +151,13 @@ async def show_welcome(event):
 CMD_HELP.update(
     {
         "welcome": "**Plugin :** `welcome`\
-\n\n  •  **Syntax :** `.savewelcome` <welcome message> or reply to a message with .savewelcome\
+\n\n  •  **Syntax :** `.sawe` <welcome message> or reply to a message with .savewelcome\
 \n  •  **Function :** Saves the message as a welcome note in the chat.\
 \n\n  •  Available variables for formatting welcome messages :\
 \n`{mention}, {title}, {count}, {first}, {last}, {fullname}, {userid}, {username}, {my_first}, {my_fullname}, {my_last}, {my_mention}, {my_username}`\
-\n\n  •  **Syntax :** `.listwelcome`\
+\n\n  •  **Syntax :** `.listsawe`\
 \n  •  **Function :** Check whether you have a welcome note in the chat.\
-\n\n  •  **Syntax :** `.clearwelcome`\
+\n\n  •  **Syntax :** `.clwe`\
 \n  •  **Function :** Deletes the welcome note for the current chat.\
 "
     }

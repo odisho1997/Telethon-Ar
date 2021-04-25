@@ -11,9 +11,9 @@ CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ 𝗪َ𝗘𝗟َِ𝗖𝗢�
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
 
-@bot.on(admin_cmd(outgoing=True, pattern="alive$"))
-@bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
-async def amireallyalive(alive):
+@bot.on(admin_cmd(outgoing=True, pattern="sourc$"))
+@bot.on(sudo_cmd(pattern="sourc$", allow_sudo=True))
+async def amireallyalive(sourc):
     if alive.fwd_from:
         return
     reply_to_id = await reply_id(alive)
@@ -21,10 +21,10 @@ async def amireallyalive(alive):
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
-        cat_caption += f"**{EMOJI} قاعدة البيانات 『** `{check_sgnirts}`』\n"
-        cat_caption += f"**{EMOJI} اصدار التليثون  『** `{version.__version__}』\n`"
+        cat_caption += f"**{EMOJI} قاعدة البيانات 『** `1.0.0`』\n"
+        cat_caption += f"**{EMOJI} اصدار التليثون  『** `1.0.0`』\n`"
         cat_caption += f"**{EMOJI} اصدار تليثون العرب 『** `1.0.0`』\n"
-        cat_caption += f"**{EMOJI} اصدار البايثون 『** `{python_version()}』\n`"
+        cat_caption += f"**{EMOJI} اصدار البايثون 『** `1.0.0`』\n`"
         cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
         cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
         cat_caption += f"**Ξ 『** [𝖲𝗈𝗎𝗋𝖼𝖾](t.me/iqthon)』**قناة السورس** \n"
@@ -35,13 +35,13 @@ async def amireallyalive(alive):
     else:
         await edit_or_reply(
             alive,
-            f"**{CUSTOM_ALIVE_TEXT}**\n"
-            f"**{EMOJI} قاعدة البيانات 𝆹𝅥𝅮**  `{check_sgnirts}`\n"
-            f"**{EMOJI} اصدار التليثون  𝆹𝅥𝅮** `{version.__version__}\n`"
-            f"**{EMOJI} اصدار تليثون العرب 𝆹𝅥𝅮** `{catversion}`\n"
-            f"**{EMOJI} اصدار البايثون  𝆹𝅥𝅮** `{python_version()}\n`"
-            f"**{EMOJI} مدة التشغيل 𝆹𝅥𝅮** `{uptime}\n`"
-            f"**{EMOJI} المستخدم 𝆹𝅥𝅮** {mention}\n",
+             f"**{CUSTOM_ALIVE_TEXT}**\n"
+        f"**{EMOJI} قاعدة البيانات 『** `1.0.0`』\n"
+        f"**{EMOJI} اصدار التليثون  『** `1.0.0`』\n`"
+        f"**{EMOJI} اصدار تليثون العرب 『** `1.0.0`』\n"
+        f"**{EMOJI} اصدار البايثون 『** `1.0.0`』\n`"
+        f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
+        f"**{EMOJI} المستخدم 『** {mention}』\n",
         )
 
 
@@ -67,10 +67,10 @@ def check_data_base_heal_th():
 
 CMD_HELP.update(
     {
-        "alive": "**Plugin :** `alive`\
-      \n\n  •  **Syntax : **`.alive` \
+        "alive": "**Plugin :** `sourc`\
+      \n\n  •  **Syntax : **`.sourc` \
       \n  •  **Function : **__status of bot will be showed__\
-      \n\n  •  **Syntax : **`.ialive` \
+      \n\n  •  **Syntax : **`.` \
       \n  •  **Function : **__inline status of bot will be shown.__\
       \nSet `ALIVE_PIC` var for media in alive message"
     }

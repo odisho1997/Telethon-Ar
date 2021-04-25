@@ -38,7 +38,7 @@ async def fastpurger(event):
                     msgs = []
         elif input_str:
             return await edit_or_reply(
-                event, f"**Error**\n`{input_str} is not an integer. Use proper syntax.`"
+                event, f"**هنـاك خطـأ**\n`{input_str} ليس عددًا صحيحًا.  استخدم بناء الجملة الصحيح.`"
             )
         else:
             async for msg in event.client.iter_messages(
@@ -53,7 +53,7 @@ async def fastpurger(event):
     else:
         await edit_or_reply(
             event,
-            "`No message specified.`",
+            "`لـم يتـم تحـديد رسـالة 𖠕.`",
         )
         return
     if msgs:
@@ -61,12 +61,12 @@ async def fastpurger(event):
     await event.delete()
     hi = await event.client.send_message(
         event.chat_id,
-        "`Fast purge complete!\nPurged " + str(count) + " messages.`",
+        "اكـتمل حـذف رسائل بنجـاح 𖠕 \nمـعلومات الحـذف 𖠕 " + str(count) + " messages.` 𖠕",
     )
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#PURGE \n`Purge of " + str(count) + " messages done successfully.`",
+            "حـذف الـرسائـل \n`معـلومات الحـذف " + str(count) + " تـم الانتـهاء بنـجاح 𖠕.`",
         )
     await sleep(5)
     await hi.delete()
@@ -84,10 +84,10 @@ async def purge_from(event):
         purgelist[event.chat_id] = reply_message
         await edit_delete(
             event,
-            "`This Message marked for deletion. Reply to another message with purgeto to delete all messages in between.`",
+            "`تم وضع علامة على هذه الرسالة للحذف.  قم بالرد على رسالة أخرى باستخدام purgeto لحذف جميع الرسائل بينهما 𖠕`",
         )
     else:
-        await edit_delete(event, "`Reply to a message to let me know what to delete.`")
+        await edit_delete(event, "`الرد على رسالة لإعلامي بما يجب حذفه 𖠕.`")
 
 
 @bot.on(admin_cmd(pattern="purgeto$"))
@@ -103,12 +103,12 @@ async def purge_to(event):
     except KeyError:
         return await edit_delete(
             event,
-            "`First mark the messsage with purgefrom and then mark purgeto .So, I can delete in between Messages`",
+            "`قم أولاً بتمييز الرسالة بمسح من ثم وضع علامة purgeto. لذلك ، يمكنني الحذف بين الرسائل`",
         )
     if not reply or not from_message:
         return await edit_delete(
             event,
-            "`First mark the messsage with purgefrom and then mark purgeto .So, I can delete in between Messages`",
+            "`قم أولاً بتمييز الرسالة بمسح من ثم وضع علامة purgeto. لذلك ، يمكنني الحذف بين الرسائل 𖠕`",
         )
     try:
         to_message = await reply_id(event)
@@ -127,15 +127,15 @@ async def purge_to(event):
             await event.client.delete_messages(chat, msgs)
         await edit_delete(
             event,
-            "`Fast purge complete!\nPurged " + str(count) + " messages.`",
+            "`تـم اكتـمال الحـذف الاستثنائـي 𖠕!\nالمـحذوفات 𖠕 " + str(count) + " messages.` 𖠕",
         )
         if BOTLOG:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#PURGE \n`Purge of " + str(count) + " messages done successfully.`",
+                "حـذف الاستـثنائي 𖠕 \n`حـذف لـ " + str(count) + " تـم بنـجاح 𖠕.`",
             )
     except Exception as e:
-        await edit_delete(event, f"**Error**\n`{str(e)}`")
+        await edit_delete(event, f"**عـذرا يـوجد هنـاك خطـأ**\n`{str(e)}` 𖠕")
 
 
 @bot.on(admin_cmd(pattern="purgeme"))
@@ -156,12 +156,12 @@ async def purgeme(event):
 
     smsg = await event.client.send_message(
         event.chat_id,
-        "**Purge complete!**` Purged " + str(count) + " messages.`",
+        "**الـحذف اكـتمـل 𖠕**` الـحذف " + str(count) + " رسـائل 𖠕.`",
     )
     if BOTLOG:
         await event.client.send_message(
             BOTLOG_CHATID,
-            "#PURGEME \n`Purge of " + str(count) + " messages done successfully.`",
+            "حـذف رسائـلي \n`لـ حذف " + str(count) + " انتـهى بنجـاح 𖠕.`",
         )
     await sleep(5)
     await smsg.delete()
@@ -183,27 +183,27 @@ async def delete_it(event):
                 await msg_src.delete()
                 if BOTLOG:
                     await event.client.send_message(
-                        BOTLOG_CHATID, "#DEL \n`Deletion of message was successful`"
+                        BOTLOG_CHATID, "#حـذف \n`تم حذف الرسالة بنجاح 𖠕`"
                     )
             except rpcbaseerrors.BadRequestError:
                 if BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "`Well, I can't delete a message. I am not an admin`",
+                        "`حسنًا ، لا يمكنني حذف رسالة.  أنا لست مشرفًا 𖠕`",
                     )
         elif input_str:
             if not input_str.startswith("var"):
-                await edit_or_reply(event, "`Well the time you mentioned is invalid.`")
+                await edit_or_reply(event, "`حسنًا ، الوقت الذي ذكرته غير صالح.`")
         else:
             try:
                 await msg_src.delete()
                 await event.delete()
                 if BOTLOG:
                     await event.client.send_message(
-                        BOTLOG_CHATID, "#DEL \n`Deletion of message was successful`"
+                        BOTLOG_CHATID, "#حـذف \n`تم حذف الرسالة بنجاح 𖠕`"
                     )
             except rpcbaseerrors.BadRequestError:
-                await edit_or_reply(event, "`Well, I can't delete a message`")
+                await edit_or_reply(event, "`حسنًا ، لا يمكنني حذف رسالة 𖠕`")
     else:
         if not input_Str:
             await event.delete()

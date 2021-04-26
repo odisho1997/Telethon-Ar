@@ -29,7 +29,7 @@ autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
 
 
-@bot.on(admin_cmd(pattern="tpic ?(.*)"))
+@bot.on(admin_cmd(pattern="autopic ?(.*)"))
 async def autopic(event):
     if event.fwd_from:
         return
@@ -52,7 +52,7 @@ async def autopic(event):
     else:
         if gvarstatus("autopic_counter") is None:
             addgvar("autopic_counter", 30)
-    if gvarstatus("tpic") is not None and gvarstatus("tpic") == "true":
+    if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
         return await edit_delete(event, f"`تـم تفـعيل التـغير التـلقائـي للـصور 𖠕`")
     addgvar("autopic", True)
     if input_str:
@@ -62,11 +62,11 @@ async def autopic(event):
 
 
 
-@bot.on(admin_cmd(pattern="tname$"))
+@bot.on(admin_cmd(pattern="autoname$"))
 async def _(event):
     if event.fwd_from:
         return
-    if gvarstatus("tname") is not None and gvarstatus("tname") == "true":
+    if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
         return await edit_delete(event, f"`الاسم التلقائي ممكّن بالفعل 𖠕`")
     addgvar("autoname", True)
     await edit_delete(event, "` تـم بـدأ الاسـم التـلقائـي `")
@@ -142,7 +142,7 @@ async def _(event):  # sourcery no-metrics
 
 
 async def autopicloop():
-    AUTOPICSTART = gvarstatus("tpic") == "true"
+    AUTOPICSTART = gvarstatus("autopic") == "true"
     if AUTOPICSTART and Config.DEFAULT_PIC is None:
         if BOTLOG:
             return await bot.send_message(
@@ -150,7 +150,7 @@ async def autopicloop():
                 "**Error**\n`For functing of autopic you need to set DEFAULT_PIC var in Heroku vars`",
             )
         return
-    if gvarstatus("tpic") is not None:
+    if gvarstatus("autopic") is not None:
         try:
             counter = int(gvarstatus("autopic_counter"))
         except Exception as e:
@@ -178,7 +178,7 @@ async def autopicloop():
             await asyncio.sleep(CHANGE_TIME)
         except BaseException:
             return
-        AUTOPICSTART = gvarstatus("tpic") == "true"
+        AUTOPICSTART = gvarstatus("autopic") == "true"
 
 
 async def digitalpicloop():
@@ -263,7 +263,7 @@ async def bloom_pfploop():
 
 
 async def autoname_loop():
-    AUTONAMESTART = gvarstatus("tname") == "true"
+    AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
@@ -275,7 +275,7 @@ async def autoname_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(CHANGE_TIME)
-        AUTONAMESTART = gvarstatus("tname") == "true"
+        AUTONAMESTART = gvarstatus("autoname") == "true"
 
 
 async def autobio_loop():
@@ -314,13 +314,13 @@ CMD_HELP.update(
 •  **Syntax : **`.bloom`
 •  **Function : **__Random colour profile pics will be set along with time on it. You need to set__ `DEFAULT_PIC`__ in heroku__
 
-•  **Syntax : **`.tname`
+•  **Syntax : **`.autoname`
 •  **Function : **__for time along with name, you must set __`AUTONAME`__ in the heroku vars first for this to work__
 
-•  **Syntax : **`.tpic`
+•  **Syntax : **`.autopic`
 •  **Function : **__for time along with your bio, Set __`DEFAULT_BIO`__ in the heroku vars first__
 
-•  **Syntax : **`.end function`
+•  **Syntax : **`.end + `
 •  **Function : **__To stop the given functions like autopic ,difitalpfp , bloom , autoname and autobio__
 
 **⚠️DISCLAIMER⚠️**

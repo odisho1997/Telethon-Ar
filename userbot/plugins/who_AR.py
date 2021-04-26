@@ -10,8 +10,8 @@ from telethon.utils import get_input_location
 TMP_DOWNLOAD_DIRECTORY = Config.TMP_DOWNLOAD_DIRECTORY
 
 
-@bot.on(admin_cmd(pattern="whois(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern="whois(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(pattern="who(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern="who(?: |$)(.*)", allow_sudo=True))
 async def who(event):
     cat = await edit_or_reply(event, "𖠕")
     if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):

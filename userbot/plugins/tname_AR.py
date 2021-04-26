@@ -29,7 +29,7 @@ autophoto_path = os.path.join(os.getcwd(), "userbot", "photo_pfp.png")
 digitalpfp = Config.DIGITAL_PIC or "https://telegra.ph/file/686c46e34b1a5fa4ef467.jpg"
 
 
-@bot.on(admin_cmd(pattern="autopic ?(.*)"))
+@bot.on(admin_cmd(pattern="tpic ?(.*)"))
 async def autopic(event):
     if event.fwd_from:
         return
@@ -52,7 +52,7 @@ async def autopic(event):
     else:
         if gvarstatus("autopic_counter") is None:
             addgvar("autopic_counter", 30)
-    if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
+    if gvarstatus("tpic") is not None and gvarstatus("tpic") == "true":
         return await edit_delete(event, f"`تـم تفـعيل التـغير التـلقائـي للـصور 𖠕`")
     addgvar("autopic", True)
     if input_str:
@@ -61,47 +61,12 @@ async def autopic(event):
     await autopicloop()
 
 
-@bot.on(admin_cmd(pattern="digitalpfp$"))
-async def main(event):
-    if event.fwd_from:
-        return
-    downloader = SmartDL(digitalpfp, digitalpic_path, progress_bar=False)
-    downloader.start(blocking=False)
-    while not downloader.isFinished():
-        pass
-    if gvarstatus("digitalpic") is not None and gvarstatus("digitalpic") == "true":
-        return await edit_delete(event, f"`Digitalpic is already enabled`")
-    addgvar("digitalpic", True)
-    await edit_delete(event, f"`digitalpfp has been started by my Master`")
-    await digitalpicloop()
 
-
-@bot.on(admin_cmd(pattern="bloom$"))
-async def autopic(event):
-    if event.fwd_from:
-        return
-    if Config.DEFAULT_PIC is None:
-        return await edit_delete(
-            event,
-            "**Error**\nFor functing of bloom you need to set DEFAULT_PIC var in Heroku vars",
-            parse_mode=parse_pre,
-        )
-    downloader = SmartDL(Config.DEFAULT_PIC, autopic_path, progress_bar=True)
-    downloader.start(blocking=False)
-    while not downloader.isFinished():
-        pass
-    if gvarstatus("bloom") is not None and gvarstatus("bloom") == "true":
-        return await edit_delete(event, f"`Bloom is already enabled`")
-    addgvar("bloom", True)
-    await edit_delete(event, f"`Bloom has been started by my Master`")
-    await bloom_pfploop()
-
-
-@bot.on(admin_cmd(pattern="autoname$"))
+@bot.on(admin_cmd(pattern="tname$"))
 async def _(event):
     if event.fwd_from:
         return
-    if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
+    if gvarstatus("tname") is not None and gvarstatus("tname") == "true":
         return await edit_delete(event, f"`الاسم التلقائي ممكّن بالفعل 𖠕`")
     addgvar("autoname", True)
     await edit_delete(event, "` تـم بـدأ الاسـم التـلقائـي `")
@@ -164,8 +129,8 @@ async def _(event):  # sourcery no-metrics
             await event.client(
                 functions.account.UpdateProfileRequest(first_name=DEFAULTUSER)
             )
-            return await edit_delete(event, "`Autoname has been stopped now`")
-        return await edit_delete(event, "`Autoname haven't enabled`")
+            return await edit_delete(event, "`تم إيقاف الاسم التلقائي الآن`")
+        return await edit_delete(event, "`لم يتم تمكين الاسم التلقائي`")
     if input_str == "autobio":
         if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
             delgvar("autobio")
@@ -177,7 +142,7 @@ async def _(event):  # sourcery no-metrics
 
 
 async def autopicloop():
-    AUTOPICSTART = gvarstatus("autopic") == "true"
+    AUTOPICSTART = gvarstatus("tpic") == "true"
     if AUTOPICSTART and Config.DEFAULT_PIC is None:
         if BOTLOG:
             return await bot.send_message(
@@ -185,7 +150,7 @@ async def autopicloop():
                 "**Error**\n`For functing of autopic you need to set DEFAULT_PIC var in Heroku vars`",
             )
         return
-    if gvarstatus("autopic") is not None:
+    if gvarstatus("tpic") is not None:
         try:
             counter = int(gvarstatus("autopic_counter"))
         except Exception as e:
@@ -213,7 +178,7 @@ async def autopicloop():
             await asyncio.sleep(CHANGE_TIME)
         except BaseException:
             return
-        AUTOPICSTART = gvarstatus("autopic") == "true"
+        AUTOPICSTART = gvarstatus("tpic") == "true"
 
 
 async def digitalpicloop():
@@ -298,7 +263,7 @@ async def bloom_pfploop():
 
 
 async def autoname_loop():
-    AUTONAMESTART = gvarstatus("autoname") == "true"
+    AUTONAMESTART = gvarstatus("tname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
         HM = time.strftime("%H:%M")
@@ -310,7 +275,7 @@ async def autoname_loop():
             LOGS.warning(str(ex))
             await asyncio.sleep(ex.seconds)
         await asyncio.sleep(CHANGE_TIME)
-        AUTONAMESTART = gvarstatus("autoname") == "true"
+        AUTONAMESTART = gvarstatus("tname") == "true"
 
 
 async def autobio_loop():
@@ -349,10 +314,10 @@ CMD_HELP.update(
 •  **Syntax : **`.bloom`
 •  **Function : **__Random colour profile pics will be set along with time on it. You need to set__ `DEFAULT_PIC`__ in heroku__
 
-•  **Syntax : **`.autoname`
+•  **Syntax : **`.tname`
 •  **Function : **__for time along with name, you must set __`AUTONAME`__ in the heroku vars first for this to work__
 
-•  **Syntax : **`.autobio`
+•  **Syntax : **`.tpic`
 •  **Function : **__for time along with your bio, Set __`DEFAULT_BIO`__ in the heroku vars first__
 
 •  **Syntax : **`.end function`

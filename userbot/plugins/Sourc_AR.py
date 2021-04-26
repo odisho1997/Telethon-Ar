@@ -13,7 +13,7 @@ EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
 @bot.on(admin_cmd(outgoing=True, pattern="sourc$"))
 @bot.on(sudo_cmd(pattern="sourc$", allow_sudo=True))
-async def amireallyalive(sourc):
+async def amireallyalive(alive):
     if alive.fwd_from:
         return
     reply_to_id = await reply_id(alive)

@@ -23,10 +23,10 @@ async def amireallyalive(alive):
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات 『** `1.0.0`』\n"
         cat_caption += f"**{EMOJI} اصدار الـتليثون  『** `1.0.0`』\n`"
-        cat_caption += f"**{EMOJI} اصدار تليثون العـرب  『 `1.0.0`』**\n`"
-        cat_caption += f"**{EMOJI} اصدار البـايثون  『 `1.0.0`』**\n`"
-        cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
-        cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
+        cat_caption += f"**{EMOJI} اصدار تليثون العـرب**  『 `1.0.0`』\n`"
+        cat_caption += f"**{EMOJI} اصدار البـايثون**  『 `1.0.0`』\n`"
+        cat_caption += f"{EMOJI} 『 `{uptime}`』 **مدة التشغيل**\n`"
+        cat_caption += f"{EMOJI} 『 `{mention}`』 **المستخدم**\n"
         cat_caption += f"**Ξ 『** [𝖲𝗈𝗎𝗋𝖼𝖾](t.me/iqthon)』**قناة السورس** \n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
@@ -67,8 +67,8 @@ def check_data_base_heal_th():
 
 CMD_HELP.update(
     {
-        "alive": "**Plugin :** `sourc`\
-      \n\n  •  **Syntax : **`.sourc` \
+        "alive": "**Plugin :** `alive`\
+      \n\n  •  **Syntax : **`.alive` \
       \n  •  **Function : **__status of bot will be showed__\
       \n\n  •  **Syntax : **`.` \
       \n  •  **Function : **__inline status of bot will be shown.__\

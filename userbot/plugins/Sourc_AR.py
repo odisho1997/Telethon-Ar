@@ -22,9 +22,9 @@ async def amireallyalive(alive):
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
         cat_caption += f"**{EMOJI} قاعدة البيانات 『** `1.0.0`』\n"
-        cat_caption += f"**{EMOJI} اصدار التليثون  『** `1.0.0`』\n`"
-        cat_caption += f"{EMOJI} اصدار تليثون العرب** 『 `1.0.0`』**\n"
-        cat_caption += f"{EMOJI} اصدار البايثون** 『 `1.0.0`』**\n`"
+        cat_caption += f"**{EMOJI} اصدار الـتليثون  『** `1.0.0`』\n`"
+        cat_caption += f"**{EMOJI} اصدار تليثون العـرب  『** `1.0.0`』\n`"
+        cat_caption += f"**{EMOJI} اصدار البـايثون  『** `1.0.0`』\n`"
         cat_caption += f"**{EMOJI} مدة التشغيل 『** `{uptime}』\n`"
         cat_caption += f"**{EMOJI} المستخدم 『** {mention}』\n"
         cat_caption += f"**Ξ 『** [𝖲𝗈𝗎𝗋𝖼𝖾](t.me/iqthon)』**قناة السورس** \n"

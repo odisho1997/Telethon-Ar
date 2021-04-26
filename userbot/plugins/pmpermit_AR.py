@@ -21,7 +21,7 @@ PREV_REPLY_MESSAGE = {}
 CACHE = {}
 PMPERMIT_PIC = Config.PMPERMIT_PIC
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "cat"
-USER_BOT_WARN_ZERO = "𝆹𝅥𝅮 لقد حذرتك من تكرار الرسائل . الآن تم حظرك والإبلاغ عنك حتى إشعار آخر.\n**- #مـع سـلامة 𖠕،** "
+USER_BOT_WARN_ZERO = " لقد حذرتك من تكرار الرسائل . الآن تم حظرك والإبلاغ عنك حتى إشعار آخر.\n**- #مـع سـلامة 𖠕،** "
 
 
 if Config.PRIVATE_GROUP_ID is not None:
@@ -38,9 +38,9 @@ if Config.PRIVATE_GROUP_ID is not None:
             and not pmpermit_sql.is_approved(chat.id)
             and chat.id not in PM_WARNS
         ):
-            pmpermit_sql.approve(chat.id, "مرفوض")
+            pmpermit_sql.approve(chat.id, "no")
 
-    @bot.on(admin_cmd(pattern="(a|سماح)(?: |$)(.*)"))
+    @bot.on(admin_cmd(pattern="(a|yas)(?: |$)(.*)"))
     async def approve_p_m(event):
         if event.is_private:
             user = await event.get_chat()
@@ -62,7 +62,7 @@ if Config.PRIVATE_GROUP_ID is not None:
             pmpermit_sql.approve(user.id, reason)
             await edit_delete(
                 event,
-                f"**𝆹𝅥𝅮 تمت الموافقه على** [{user.first_name}](tg://user?id={user.id}) 𖠕.",
+                f"** تمت الموافقه على** [{user.first_name}](tg://user?id={user.id}) 𖠕.",
                 5,
             )
             if user.id in PMMESSAGE_CACHE:
@@ -79,7 +79,7 @@ if Config.PRIVATE_GROUP_ID is not None:
                 5,
             )
 
-    @bot.on(admin_cmd(pattern="(da|رفض)(?: |$)(.*)"))
+    @bot.on(admin_cmd(pattern="(da|no)(?: |$)(.*)"))
     async def disapprove_p_m(event):
         if event.is_private:
             user = await event.get_chat()
@@ -107,7 +107,7 @@ if Config.PRIVATE_GROUP_ID is not None:
                 5,
             )
 
-    @bot.on(admin_cmd(pattern="بلوك(?: |$)(.*)"))
+    @bot.on(admin_cmd(pattern="band(?: |$)(.*)"))
     async def block_p_m(event):
         if event.is_private:
             user = await event.get_chat()
@@ -122,7 +122,7 @@ if Config.PRIVATE_GROUP_ID is not None:
         )
         await event.client(functions.contacts.BlockRequest(user.id))
 
-    @bot.on(admin_cmd(pattern="انبلوك(?: |$)(.*)"))
+    @bot.on(admin_cmd(pattern="noban(?: |$)(.*)"))
     async def unblock_pm(event):
         if event.is_private:
             user = await event.get_chat()

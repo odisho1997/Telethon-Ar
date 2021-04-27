@@ -68,7 +68,7 @@ async def _(event):
         except Exception as e:  # pylint:disable=C0103,W0703
             await event.edit(str(e))
     else:
-        await event.edit("اقرأ ".info create" لمعرفة كيفية استخدامي 𖠕")
+        await event.edit("Read `.info create` to know how to use me")
 
 
 CMD_HELP.update(

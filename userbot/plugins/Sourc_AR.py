@@ -21,13 +21,13 @@ async def amireallyalive(alive):
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
         cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n\n"
-        cat_caption += f"**{EMOJI} قاعدة البيانات :** `{check_sgnirts}`\n"
-        cat_caption += f"**{EMOJI} نسخة تليثون :** `{version.__version__}\n`"
-        cat_caption += f"**{EMOJI} نسخـة العـرب :** `{catversion}`\n"
-        cat_caption += f"**{EMOJI} نسخة البايثون :** `{python_version()}\n`"
-        cat_caption += f"**{EMOJI} الوقت :** `{uptime}\n`"
-        cat_caption += f"**{EMOJI} المنشئ:** {mention}\n"
-        cat_caption += f"**Ξ 『** [𝖲𝗈𝗎𝗋𝖼𝖾](t.me/M4_STORY)』**قنـاة السـورس** \n"
+        cat_caption += f"**{EMOJI} قاعدة البيانات :**『 `{check_sgnirts}`』\n"
+        cat_caption += f"**{EMOJI} نسخة تليثون :** 『`{version.__version__}』\n`"
+        cat_caption += f"**{EMOJI} نسخـة العـرب :** 『`{catversion}`』\n"
+        cat_caption += f"**{EMOJI} نسخة البايثون :**『 `{python_version()}』\n`"
+        cat_caption += f"**{EMOJI} الوقت :**『 `{uptime}』\n`"
+        cat_caption += f"**{EMOJI} المنشئ:**『 {mention}』\n"
+        cat_caption += f"**{EMOJI}**  **[𝖲𝗈𝗎𝗋𝖼𝖾]**(t.me/M4_STORY)  𖠕 .\n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )

@@ -30,7 +30,7 @@ async def echo(cat):
         except BaseException:
             pass
         if is_echo(user_id, chat_id):
-            await edit_or_reply(cat, "𖠕 تـم بـالفعل الـرد على الشخص")
+            await edit_or_reply(cat, "𖠕 تـم تفـيل وضـع الازعاج على الشخص")
             return
         addecho(user_id, chat_id)
         await edit_or_reply(cat, "Hi")
@@ -75,7 +75,7 @@ async def echo(cat):
                 f"[User](tg://user?id={echos.user_id}) in chat `{echos.chat_id}`\n"
             )
     else:
-        output_str = "No echo enabled users "
+        output_str = "لايـوجد لسـتة وضـع ازعـاج هنـا 𖠕"
     if len(output_str) > Config.MAX_MESSAGE_SIZE_LIMIT:
         key = (
             requests.post(

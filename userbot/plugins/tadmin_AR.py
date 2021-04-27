@@ -140,7 +140,7 @@ async def ban(catty):
         )
     except UserAdminInvalidError:
         return await catevent.edit(
-            ""إما أنك لست مسؤولاً أو أنك حاولت حظر مسؤول لم تقم بترقيته""
+            "إما أنك لست مسؤولاً أو أنك حاولت حظر مسؤول لم تقم بترقيته"
         )
     except BadRequestError:
         await catevent.edit(NO_PERM)

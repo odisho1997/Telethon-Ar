@@ -66,9 +66,9 @@ async def cmd_list(event):
             await event.delete()
     else:
         if HELPTYPE is True:
-            help_string = f" قائمة الاوامـر الخـاصة بـسورس تـليثون العـرب لـ المسـتخدم : {ALIVE_NAME} \
-                          \nاكتب `.help`  لأضهـار قـائمه الاوامـر ارسل .\
-                          \nاكتب `.info + Name file` لأضـهار أوامـر مـلف محـدد أرسـل \n @IRaQTHoNBoT "
+            help_string = f" List of commands for Source Telethon Arabs To ↳ : {ALIVE_NAME} \
+                          \nType ↳ `.help`  Show the list of commands .\
+                          \nType ↳ `.info + Name file` Show specific file commands \n Quick source command bot ↳ @IRaQTHoNBoT "
             tgbotusername = Config.TG_BOT_USERNAME
             results = await event.client.inline_query(tgbotusername, help_string)
             await results[0].click(event.chat_id, reply_to=reply_to_id, hide_via=True)

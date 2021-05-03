@@ -234,7 +234,7 @@ async def rm_deletedacc(show):
         await edit_delete(show, "انـا لـست أدمـن هنـا !`", 5)
         return
     event = await edit_or_reply(
-        show, "`حذف الحسابات المحذوفة...\nOh I can do that?!?!`"
+        show, "`حذف الحسابات المحذوفة...\nحسنـا جـاري الحـذف ⛔`"
     )
     del_u = 0
     del_a = 0
@@ -245,15 +245,15 @@ async def rm_deletedacc(show):
                 await sleep(0.5)
                 del_u += 1
             except ChatAdminRequiredError:
-                await edit_delete(event, "`I don't have ban rights in this group`", 5)
+                await edit_delete(event, "عـذرا هذا ليـس مجموعة`", 5)
                 return
             except UserAdminInvalidError:
                 del_a += 1
     if del_u > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s)"
+        del_status = f"المـحذوفين **{del_u}** عـدد المـحذوفين(s)"
     if del_a > 0:
-        del_status = f"Cleaned **{del_u}** deleted account(s) \
-        \n**{del_a}** deleted admin accounts are not removed"
+        del_status = f"المـحذوفين **{del_u}** عدد المـحذوفين(s) \
+        \n**{del_a}** لا تتم إزالة حسابات المشرف المحذوفة"
     await edit_delete(event, del_status, 5)
     if BOTLOG:
         await show.client.send_message(

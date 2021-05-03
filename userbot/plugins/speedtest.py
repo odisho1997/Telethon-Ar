@@ -23,7 +23,7 @@ async def _(event):
     elif input_str == "text":
         as_text = True
     catevent = await edit_or_reply(
-        event, "`Calculating my internet speed. Please wait!`"
+        event, "`يـرجى الانتضـار لجـلب سـرعة الانـترنيت لديـك 📶`"
     )
     start = datetime.now()
     s = speedtest.Speedtest()
@@ -45,13 +45,13 @@ async def _(event):
         speedtest_image = response
         if as_text:
             await catevent.edit(
-                """`SpeedTest completed in {} seconds`
+                """`سـرعة الانـترنيت لديـك هيـة {} بالـثانية 📳`
 
-`Download: {}`
-`Upload: {}`
-`Ping: {}`
-`Internet Service Provider: {}`
-`ISP Rating: {}`""".format(
+`الـتحميل : {}`
+`الـرفع : {}`
+`الـبنك : {}`
+`مزود خدمة الإنترنت : {}`
+`تقييم ISP : {}`""".format(
                     ms,
                     convert_from_bytes(download_speed),
                     convert_from_bytes(upload_speed),
@@ -72,10 +72,10 @@ async def _(event):
             await event.delete()
     except Exception as exc:
         await catevent.edit(
-            """**SpeedTest** completed in {} seconds
-Download: {}
-Upload: {}
-Ping: {}
+            """**سـرعة الانتـرنيت** اكـتمل خـلال {} ثانـية
+الـتحميل : {}
+الـرفع : {}
+البنـك : {}
 
 __With the Following ERRORs__
 {}""".format(

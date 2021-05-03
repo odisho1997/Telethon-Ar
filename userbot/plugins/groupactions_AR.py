@@ -76,7 +76,7 @@ async def _(event):
     if input_str:
         chat = await event.get_chat()
         if not chat.admin_rights and not chat.creator:
-            await edit_or_reply(event, "`You aren't an admin here!`")
+            await edit_or_reply(event, "`عـذرا انت لسـت ادمن هنـا`")
             return False
     p = 0
     b = 0
@@ -90,7 +90,7 @@ async def _(event):
     o = 0
     q = 0
     r = 0
-    et = await edit_or_reply(event, "Searching Participant Lists.")
+    et = await edit_or_reply(event, "جـاري جـمع المـعلومـات 🔰.")
     async for i in event.client.iter_participants(event.chat_id):
         p += 1
         #
@@ -104,7 +104,7 @@ async def _(event):
                 if status:
                     c += 1
                 else:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusLastMonth):
@@ -114,7 +114,7 @@ async def _(event):
                 if status:
                     c += 1
                 else:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusLastWeek):
@@ -124,7 +124,7 @@ async def _(event):
                 if status:
                     c += 1
                 else:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
         if isinstance(i.status, UserStatusOffline):
@@ -132,7 +132,7 @@ async def _(event):
             if "o" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
                 else:
@@ -142,7 +142,7 @@ async def _(event):
             if "q" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
                 else:
@@ -154,7 +154,7 @@ async def _(event):
                 if status:
                     c += 1
                 else:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
         if i.bot:
@@ -162,7 +162,7 @@ async def _(event):
             if "b" in input_str:
                 status, e = await ban_user(event.chat_id, i, rights)
                 if not status:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
                     break
                 else:
@@ -174,12 +174,12 @@ async def _(event):
                 if status:
                     c += 1
                 else:
-                    await et.edit("I need admin priveleges to perform this action!")
+                    await et.edit("أحتاج امتيازات المسؤول لأداء هذا الإجراء!")
                     e.append(str(e))
         elif i.status is None:
             n += 1
     if input_str:
-        required_string = """Kicked {} / {} users
+        required_string = """المـطرودين {} / {} الاعـضاء
 الحسابات المحذوفة : {}
 حالة المستخدم فارغة : {}
 النشطـون منذ شـهر : {}
@@ -207,7 +207,7 @@ async def _(event):
     )
 
 
-# Ported by ©[NIKITA](t.me/kirito6969) and ©[EYEPATCH](t.me/NeoMatrix90)
+# Ported by ©[telethon-Ar](t.me/iqthon) and ©[dav](t.me/klanr)
 @bot.on(admin_cmd(pattern=f"zombies ?(.*)"))
 @bot.on(sudo_cmd(pattern="zombies ?(.*)", allow_sudo=True))
 async def rm_deletedacc(show):
@@ -234,7 +234,7 @@ async def rm_deletedacc(show):
         await edit_delete(show, "انـا لـست أدمـن هنـا !`", 5)
         return
     event = await edit_or_reply(
-        show, "`Deleting deleted accounts...\nOh I can do that?!?!`"
+        show, "`حذف الحسابات المحذوفة...\nOh I can do that?!?!`"
     )
     del_u = 0
     del_a = 0

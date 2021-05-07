@@ -7,7 +7,7 @@ from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, rep
 
 DEFAULTUSER = ALIVE_NAME or "I𝐐𝐓𝐇𝐎𝐍⁦♡⁩"
 CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/1d335e1edc99d0288cf3c.jpg"
-CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ 𝗪َ𝗘𝗟َِ𝗖𝗢𝗠َِ𝙀َِ 𝗧𝗢 𝗧𝗘𝗟𝗘𝗧𝗛𝗢𝗡 𝗔َِ𝗥َِ𝗔𝗕َِ𝗦 ⇜"
+CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ ＴＥＬＥＴＨＯＮ ＡＲＡＢＳ ⇜"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
 

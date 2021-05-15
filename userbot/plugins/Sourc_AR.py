@@ -6,7 +6,7 @@ from telethon import version
 from . import ALIVE_NAME, StartTime, catversion, get_readable_time, mention, reply_id
 
 DEFAULTUSER = ALIVE_NAME or "I𝐐𝐓𝐇𝐎𝐍⁦♡⁩"
-CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/1d335e1edc99d0288cf3c.jpg"
+CAT_IMG = Config.ALIVE_PIC or "https://telegra.ph/file/8113946b13686a0bdcac6.jpg"
 CUSTOM_ALIVE_TEXT = Config.CUSTOM_ALIVE_TEXT or "⇝ ＴＥＬＥＴＨＯＮ ＡＲＡＢＳ ⇜"
 EMOJI = Config.CUSTOM_ALIVE_EMOJI or "𖠕"
 
@@ -20,14 +20,11 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     _, check_sgnirts = check_data_base_heal_th()
     if CAT_IMG:
-        cat_caption = f"**{CUSTOM_ALIVE_TEXT}**\n"
-        cat_caption += f"**{EMOJI} قاعدة البيانات :**『 `{check_sgnirts}`』\n"
-        cat_caption += f"**{EMOJI} نسخة تليثون :** 『`{version.__version__}』\n`"
-        cat_caption += f"**{EMOJI} نسخـة العـرب :** 『`{catversion}`』\n"
-        cat_caption += f"**{EMOJI} نسخة البايثون :**『 `{python_version()}』\n`"
-        cat_caption += f"**{EMOJI} الوقت :**『 `{uptime}』\n`"
-        cat_caption += f"**{EMOJI} المنشئ:**『 {mention}』\n"
-        cat_caption += f"**Ξ**  **[𝖲𝗈𝗎𝗋𝖼𝖾]**(t.me/M4_STORY)  𖠕 .\n"
+        cat_caption = f"**↲ الحاله  ↵ **⇲ `{check_sgnirts}`⇱\n"
+        cat_caption += f"**↲ اصدار النسخه ↵**⇲ `1.0.0⇱\n`"
+        cat_caption += f"**↲ مده التشغيل  ↵ **⇲ `{uptime}⇱\n`"
+        cat_caption += f"**↲ المستخدم ↵ **⇲ {mention}⇱\n"
+        cat_caption += f"**↲**  ⇲**[نسـخة عـربيـة]**(t.me/thonar) ⇱.\n\n"
         await alive.client.send_file(
             alive.chat_id, CAT_IMG, caption=cat_caption, reply_to=reply_to_id
         )
@@ -67,11 +64,9 @@ def check_data_base_heal_th():
 
 CMD_HELP.update(
     {
-        "alive": "**Plugin :** `alive`\
-      \n\n  •  **Syntax : **`.alive` \
-      \n  •  **Function : **__status of bot will be showed__\
-      \n\n  •  **Syntax : **`.` \
-      \n  •  **Function : **__inline status of bot will be shown.__\
-      \nSet `ALIVE_PIC` var for media in alive message"
+        "1": "**عدد الملف :** `1`\
+      \n\n  •  **الامر : **`.السورس` \
+      \n  •  **يفعل : **__سيتم عرض حالة البوت__\
+      "
     }
 )

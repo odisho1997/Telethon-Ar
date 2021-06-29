@@ -16,7 +16,7 @@ from telethon.tl import functions
 from . import AUTONAME, BOTLOG, BOTLOG_CHATID, DEFAULT_BIO
 from .sql_helper.globals import addgvar, delgvar, gvarstatus
 
-DEFAULTUSERBIO = DEFAULT_BIO or " ᗯᗩᏆᎢᏆᑎᏀ ᏞᏆᏦᗴ ᎢᏆᗰᗴ  "
+DEFAULTUSERBIO = DEFAULT_BIO or "الحمد الله على كل شئ"
 CHANGE_TIME = Config.CHANGE_TIME
 DEFAULTUSER = AUTONAME or Config.ALIVE_NAME
 
@@ -69,7 +69,7 @@ async def _(event):
     if gvarstatus("autoname") is not None and gvarstatus("autoname") == "true":
         return await edit_delete(event, f"`الاسم التلقائي ممكّن بالفعل 𖠕`")
     addgvar("autoname", True)
-    await edit_delete(event, "` تـم بـدأ الاسـم التـلقائـي `")
+    await edit_delete(event, "`تـم بـدأ الاسـم التـلقائـي `")
     await autoname_loop()
 
 
@@ -78,9 +78,9 @@ async def _(event):
     if event.fwd_from:
         return
     if gvarstatus("autobio") is not None and gvarstatus("autobio") == "true":
-        return await edit_delete(event, f"`Autobio is already enabled`")
+        return await edit_delete(event, f"`تم تفعيل البايو التلقائي`")
     addgvar("autobio", True)
-    await edit_delete(event, "`Autobio has been started by my Master `")
+    await edit_delete(event, "`تم بدء تشغيل البايو التلقائي بواسطة سيدي`")
     await autobio_loop()
 
 
@@ -99,8 +99,8 @@ async def _(event):  # sourcery no-metrics
                     os.remove(autopic_path)
                 except BaseException:
                     return
-            return await edit_delete(event, "`Autopic has been stopped now`")
-        return await edit_delete(event, "`Autopic haven't enabled`")
+            return await edit_delete(event, "`الصوره الموقته تم توقيفها`")
+        return await edit_delete(event, "`انها لاتشتغل اساسا`")
     if input_str == "digitalpfp":
         if gvarstatus("digitalpic") is not None and gvarstatus("digitalpic") == "true":
             delgvar("digitalpic")
@@ -137,8 +137,8 @@ async def _(event):  # sourcery no-metrics
             await event.client(
                 functions.account.UpdateProfileRequest(about=DEFAULTUSERBIO)
             )
-            return await edit_delete(event, "`Autobio has been stopped now`")
-        return await edit_delete(event, "`Autobio haven't enabled`")
+            return await edit_delete(event, "`تم ايقاف البايو التلقائي`")
+        return await edit_delete(event, "`لم يتم تشغيله`")
 
 
 async def autopicloop():
@@ -164,7 +164,7 @@ async def autopicloop():
         shutil.copy(autopic_path, autophoto_path)
         im = Image.open(autophoto_path)
         file_test = im.rotate(counter, expand=False).save(autophoto_path, "PNG")
-        current_time = datetime.now().strftime("  Time: %H:%M \n  Date: %d.%m.%y ")
+        current_time = datetime.now().strftime("  Time: %I:%M \n  Date: %d.%m.%y ")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
@@ -244,7 +244,7 @@ async def bloom_pfploop():
         image = Image.open(autophoto_path)
         image.paste((R, G, B), [0, 0, image.size[0], image.size[1]])
         image.save(autophoto_path)
-        current_time = datetime.now().strftime("\n Time: %H:%M:%S \n \n Date: %d/%m/%y")
+        current_time = datetime.now().strftime("\n Time: %I:%M:%S \n \n Date: %d/%m/%y")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 60)
@@ -266,8 +266,8 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HM = time.strftime("%H:%M")
-        name = f"𖠕 {HM} - "
+        HM = time.strftime("%I:%M")
+        name = f"⌗┇ {HM}™ | "
         LOGS.info(name)
         try:
             await bot(functions.account.UpdateProfileRequest(first_name=name))
@@ -282,8 +282,8 @@ async def autobio_loop():
     AUTOBIOSTART = gvarstatus("autobio") == "true"
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
-        HM = time.strftime("%H:%M:%S")
-        bio = f" - {DEFAULTUSERBIO} - 𖠕 {HM}"
+        HM = time.strftime("%I:%M:%S")
+        bio = f" ⌗┇ {DEFAULTUSERBIO} - | {HM}"
         LOGS.info(bio)
         try:
             await bot(functions.account.UpdateProfileRequest(about=bio))

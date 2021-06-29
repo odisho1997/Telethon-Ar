@@ -282,8 +282,8 @@ async def watcher(event):
             LOGS.info(str(e))
 
 
-@bot.on(admin_cmd(pattern="mute(?: |$)(.*)", command="mute"))
-@bot.on(sudo_cmd(pattern="mute(?: |$)(.*)", command="mute", allow_sudo=True))
+@bot.on(admin_cmd(pattern="gggmute(?: |$)(.*)", command="gggmute"))
+@bot.on(sudo_cmd(pattern="gggmute(?: |$)(.*)", command="gggmute", allow_sudo=True))
 async def startmute(event):
     if event.fwd_from:
         return
@@ -380,8 +380,8 @@ async def startmute(event):
             )
 
 
-@bot.on(admin_cmd(pattern="unmute(?: |$)(.*)", command="unmute"))
-@bot.on(sudo_cmd(pattern="unmute(?: |$)(.*)", command="unmute", allow_sudo=True))
+@bot.on(admin_cmd(pattern="gggunmute(?: |$)(.*)", command="gggunmute"))
+@bot.on(sudo_cmd(pattern="gggunmute(?: |$)(.*)", command="gggunmute", allow_sudo=True))
 async def endmute(event):
     if event.fwd_from:
         return

@@ -224,13 +224,13 @@ async def gablist(event):
     await edit_or_reply(event, GBANNED_LIST)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"gmute(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern=r"gmute(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(outgoing=True, pattern=r"mute(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"mute(?: |$)(.*)", allow_sudo=True))
 async def startgmute(event):
     if event.fwd_from:
         return
     if event.is_private:
-        await event.edit("`Unexpected issues or ugly errors may occur!`")
+        await event.edit("`تم كتم الشخص بنجاح!`")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -239,31 +239,31 @@ async def startgmute(event):
         if not user:
             return
         if user.id == bot.uid:
-            return await edit_or_reply(event, "`Sorry, I can't gmute myself`")
+            return await edit_or_reply(event, "`عذرا لايمكن كتمه`")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "`Sorry. I am unable to fetch the user`")
-    if is_muted(userid, "gmute"):
+        return await edit_or_reply(event, "`آسف. أنا غير قادر على كتم المستخدم`")
+    if is_muted(userid, "mute"):
         return await edit_or_reply(
             event,
-            f"{_format.mentionuser(user.first_name ,user.id)} ` is already gmuted`",
+            f"{_format.mentionuser(user.first_name ,user.id)} ` مكتوم بالفعل`",
         )
     try:
-        mute(userid, "gmute")
+        mute(userid, "mute")
     except Exception as e:
-        await edit_or_reply(event, f"**Error**\n`{str(e)}`")
+        await edit_or_reply(event, f"**هناك خطا**\n`{str(e)}`")
     else:
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully gmuted`\n**Reason :** `{reason}`",
+                f"{_format.mentionuser(user.first_name ,user.id)} `تم كتم الشخص بنجاح`\n**السبب :** `{reason}`",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully gmuted`",
+                f"{_format.mentionuser(user.first_name ,user.id)} `تم كتمه بنجاح`",
             )
     if BOTLOG:
         reply = await event.get_reply_message()
@@ -284,13 +284,13 @@ async def startgmute(event):
             await reply.forward_to(BOTLOG_CHATID)
 
 
-@bot.on(admin_cmd(outgoing=True, pattern=r"ungmute(?: |$)(.*)"))
-@bot.on(sudo_cmd(pattern=r"ungmute(?: |$)(.*)", allow_sudo=True))
+@bot.on(admin_cmd(outgoing=True, pattern=r"unmute(?: |$)(.*)"))
+@bot.on(sudo_cmd(pattern=r"unmute(?: |$)(.*)", allow_sudo=True))
 async def endgmute(event):
     if event.fwd_from:
         return
     if event.is_private:
-        await event.edit("`Unexpected issues or ugly errors may occur!`")
+        await event.edit("`جاري فك الكتم`")
         await asyncio.sleep(2)
         userid = event.chat_id
         reason = event.pattern_match.group(1)
@@ -299,51 +299,51 @@ async def endgmute(event):
         if not user:
             return
         if user.id == bot.uid:
-            return await edit_or_reply(event, "`Sorry, I can't gmute myself`")
+            return await edit_or_reply(event, "`آسف ، لا يمكنني كتم نفسي`")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
     except Exception:
-        return await edit_or_reply(event, "`Sorry. I am unable to fetch the user`")
+        return await edit_or_reply(event, "`آسف. أنا غير قادر على فك كتم المستخدم`")
 
-    if not is_muted(userid, "gmute"):
+    if not is_muted(userid, "mute"):
         return await edit_or_reply(
-            event, f"{_format.mentionuser(user.first_name ,user.id)} `is not gmuted`"
+            event, f"{_format.mentionuser(user.first_name ,user.id)} `ان هذا الشخص غير مكتوم`"
         )
     try:
-        unmute(userid, "gmute")
+        unmute(userid, "mute")
     except Exception as e:
-        await edit_or_reply(event, f"**Error**\n`{str(e)}`")
+        await edit_or_reply(event, f"**هناك خطا**\n`{str(e)}`")
     else:
         if reason:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully ungmuted`\n**Reason :** `{reason}`",
+                f"{_format.mentionuser(user.first_name ,user.id)} `تم إلغاء كتمه بنجاح`\n**السبب :** `{reason}`",
             )
         else:
             await edit_or_reply(
                 event,
-                f"{_format.mentionuser(user.first_name ,user.id)} `is Successfully ungmuted`",
+                f"{_format.mentionuser(user.first_name ,user.id)} `تم إلغاء كتمه بنجاح`",
             )
     if BOTLOG:
         if reason:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#UNGMUTE\n"
-                f"**User :** {_format.mentionuser(user.first_name ,user.id)} \n"
-                f"**Reason :** `{reason}`",
+                "#فتح الكتم\n"
+                f"**المعرف :** {_format.mentionuser(user.first_name ,user.id)} \n"
+                f"**السبب :** `{reason}`",
             )
         else:
             await event.client.send_message(
                 BOTLOG_CHATID,
-                "#UNGMUTE\n"
-                f"**User :** {_format.mentionuser(user.first_name ,user.id)} \n",
+                "#فتح الكتم\n"
+                f"**المعرف :** {_format.mentionuser(user.first_name ,user.id)} \n",
             )
 
 
 @bot.on(admin_cmd(incoming=True))
 async def watcher(event):
-    if is_muted(event.sender_id, "gmute"):
+    if is_muted(event.sender_id, "mute"):
         await event.delete()
 
 

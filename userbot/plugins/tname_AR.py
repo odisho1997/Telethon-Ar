@@ -266,7 +266,7 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HM = time.strftime("%I:%M:%P")
+        HM = time.strftime("%I:%M%P")
         name = f"⌗ {HM} | "
         LOGS.info(name)
         try:

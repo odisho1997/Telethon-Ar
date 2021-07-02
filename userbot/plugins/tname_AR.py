@@ -53,11 +53,11 @@ async def autopic(event):
         if gvarstatus("autopic_counter") is None:
             addgvar("autopic_counter", 30)
     if gvarstatus("autopic") is not None and gvarstatus("autopic") == "true":
-        return await edit_delete(event, f"`تـم تفـعيل التـغير التـلقائـي للـصور 𖠕`")
+        return await edit_delete(event, f"`تـم تفـعيل التـغير التـلقائـي لصورتك 𖠕`")
     addgvar("autopic", True)
     if input_str:
         addgvar("autopic_counter", input_str)
-    await edit_delete(event, f"`بـدأ التـغيـر الصور التـلقائي 𖠕`")
+    await edit_delete(event, f"`بـدأ التـغيـر صورتك الوقتيه 𖠕`")
     await autopicloop()
 
 
@@ -147,7 +147,7 @@ async def autopicloop():
         if BOTLOG:
             return await bot.send_message(
                 BOTLOG_CHATID,
-                "**Error**\n`For functing of autopic you need to set DEFAULT_PIC var in Heroku vars`",
+                "**خطأ ** \ n` لتفعيل autopic ، تحتاج إلى تعيين DEFAULT_PIC var في Heroku vars`",
             )
         return
     if gvarstatus("autopic") is not None:
@@ -192,7 +192,7 @@ async def digitalpicloop():
                 pass
         shutil.copy(digitalpic_path, autophoto_path)
         Image.open(autophoto_path)
-        current_time = datetime.now().strftime("%H:%M")
+        current_time = datetime.now().strftime("%I:%M")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         cat = str(base64.b64decode("dXNlcmJvdC9oZWxwZXJzL3N0eWxlcy9kaWdpdGFsLnR0Zg=="))[
@@ -283,7 +283,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%I:%M:%S")
-        bio = f" ⌗┇ {DEFAULTUSERBIO} - | {HM}"
+        bio = f" ⌗ {DEFAULTUSERBIO} - | {HM}"
         LOGS.info(bio)
         try:
             await bot(functions.account.UpdateProfileRequest(about=bio))

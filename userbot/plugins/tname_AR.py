@@ -164,7 +164,7 @@ async def autopicloop():
         shutil.copy(autopic_path, autophoto_path)
         im = Image.open(autophoto_path)
         file_test = im.rotate(counter, expand=False).save(autophoto_path, "PNG")
-        current_time = datetime.now().strftime("  Time: %I:%M \n  Date: %d.%m.%y ")
+        current_time = datetime.now().strftime("  Time: %I:%M:%P \n  Date: %d.%m.%y ")
         img = Image.open(autophoto_path)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 30)
@@ -266,8 +266,8 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HM = time.strftime("%I:%M")
-        name = f"⌗ {HM}™ | "
+        HM = time.strftime("%I:%M:%P")
+        name = f"⌗ {HM} | "
         LOGS.info(name)
         try:
             await bot(functions.account.UpdateProfileRequest(first_name=name))

@@ -266,8 +266,8 @@ async def autoname_loop():
     AUTONAMESTART = gvarstatus("autoname") == "true"
     while AUTONAMESTART:
         DM = time.strftime("%d-%m-%y")
-        HM = time.strftime("%I:%M%P")
-        name = f"⌗ {HM} | "
+        HM = time.strftime("%I:%M")
+        name = f"⌯ {HM}™ ⠇"
         LOGS.info(name)
         try:
             await bot(functions.account.UpdateProfileRequest(first_name=name))
@@ -283,7 +283,7 @@ async def autobio_loop():
     while AUTOBIOSTART:
         DMY = time.strftime("%d.%m.%Y")
         HM = time.strftime("%I:%M:%S")
-        bio = f"⌗ {DEFAULTUSERBIO} - | {HM}"
+        bio = f"⌯ {DEFAULTUSERBIO} - ⠇ {HM}™"
         LOGS.info(bio)
         try:
             await bot(functions.account.UpdateProfileRequest(about=bio))

@@ -1,12 +1,30 @@
-# updater for icss
-
 import asyncio
+import os
 import sys
-from os import environ, execle, path, remove
+from asyncio.exceptions import CancelledError
 
+import heroku3
+import urllib3
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
+from userbot import HEROKU_APP, UPSTREAM_REPO_URL, catub
+
+from ..Config import Config
+from ..core.logger import logging
+from ..core.managers import edit_delete, edit_or_reply
+from ..sql_helper.global_collection import (
+    add_to_collectionlist,
+    del_keyword_collectionlist,
+    get_collectionlist_items,
+)
+from ..sql_helper.globals import delgvar
+
+plugin_category = "tools"
+cmdhd = Config.COMMAND_HAND_LER
+
+LOGS = logging.getLogger(__name__)
+# -- Constants -- #
 HEROKU_APP_NAME = Config.HEROKU_APP_NAME or None
 HEROKU_API_KEY = Config.HEROKU_API_KEY or None
 UPSTREAM_REPO_BRANCH = Config.UPSTREAM_REPO_BRANCH
